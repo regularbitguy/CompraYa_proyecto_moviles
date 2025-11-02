@@ -24,18 +24,6 @@ Basado en el prototipo de Figma proporcionado.
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 🟩 TÍTULO PRINCIPAL -->
-            <!-- Texto "Menú" -->
-            <TextView
-                android:id="@+id/tvMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="@font/plus_jakarta_sans_semibold"
-                android:text="Menú"
-                android:textColor="#114232"
-                android:textSize="26sp"
-                android:textStyle="bold" />
 
             <!-- 🟩 BARRA DE BÚSQUEDA Y NOTIFICACIONES -->
             <!-- Contiene íconos de búsqueda y campana -->
@@ -45,6 +33,20 @@ Basado en el prototipo de Figma proporcionado.
                 android:orientation="horizontal"
                 android:gravity="end"
                 android:layout_marginBottom="16dp">
+
+                <!-- 🟩 TÍTULO PRINCIPAL -->
+                <!-- Texto "Menú" -->
+                <TextView
+                    android:id="@+id/tvMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
+                    android:text="Menú"
+                    android:textColor="#114232"
+                    android:textSize="26sp"
+                    android:layout_marginRight="220dp"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/btnBuscar"

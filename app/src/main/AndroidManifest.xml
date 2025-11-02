@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prueba">
         <activity
+            android:name=".Buscar"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -24,5 +27,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

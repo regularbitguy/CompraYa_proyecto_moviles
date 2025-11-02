@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- ✅ CONTENIDO PRINCIPAL -->
+    <LinearLayout
+        android:id="@+id/layoutContenidoBusqueda"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_above="@id/bottomNavigationSearch">
+
+        <!-- 🟩 TÍTULO -->
+        <TextView
+            android:id="@+id/tvTituloBusqueda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+            android:text="Menú de búsqueda"
+            android:textColor="#114232"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <!-- 🟩 CAMPO DE BÚSQUEDA -->
+        <!-- Incluye ícono de búsqueda y botón para limpiar -->
+        <LinearLayout
+            android:id="@+id/layoutSearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@drawable/barra_busqueda"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:layout_marginBottom="20dp">
+
+            <!-- Icono retroceder -->
+            <ImageView
+                android:id="@+id/iconBuscar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="Buscar"
+                android:padding="5dp"
+                android:src="@drawable/img_1"
+                app:tint="#114232" />
+
+            <!-- Campo de texto para búsqueda -->
+            <EditText
+                android:id="@+id/etBusqueda"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/inter_tight_thin"
+                android:hint="¿Qué estás buscando?"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingStart="8dp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <!-- Botón de limpiar texto -->
+            <ImageButton
+                android:id="@+id/btnLimpiar"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/img_2"
+                android:scaleType="fitXY"
+                android:contentDescription="Limpiar texto" />
+        </LinearLayout>
+
+        <!-- 🟩 LISTA DE BÚSQUEDAS RECIENTES -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/layoutBusquedasRecientes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Ejemplo de ítems estáticos -->
+                <!-- (Más adelante puedes llenarlos dinámicamente con RecyclerView o BD local) -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ropa para varones"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ropa para niños"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="guantes para invierno"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="dispositivos electrónicos"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="gorras"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="tecnología"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ropa deportiva"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/img"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="accesorios para damas"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!-- ✅ NAVBAR INFERIOR (igual al del menú principal) -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationSearch"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>
