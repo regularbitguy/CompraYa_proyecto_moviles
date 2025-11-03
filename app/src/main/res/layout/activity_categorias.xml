@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootCategorias"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/white">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+            android:padding="20dp"
+            android:text="Categorías"
+            android:textColor="#114232"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnBuscarCategoria"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_item_producto"
+            android:src="@drawable/vector"
+            android:contentDescription="Buscar"
+            app:tint="#114232"
+            android:layout_marginEnd="8dp"/>
+
+        <ImageButton
+            android:id="@+id/btnChatCategoria"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_item_producto"
+            android:src="@drawable/img_chats"
+            android:contentDescription="Chat"
+            app:tint="#114232" />
+    </LinearLayout>
+
+    <!-- RecyclerView: grid (se carga dinámicamente desde el adapter) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategorias"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
+
+    <!-- BottomNavigationView (usa tu bottom_nav_menu.xml) -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationCategorias"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/black"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_nav_menu" />
+
+</LinearLayout>

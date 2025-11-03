@@ -46,7 +46,7 @@
                 android:layout_height="30dp"
                 android:contentDescription="Buscar"
                 android:padding="5dp"
-                android:src="@drawable/img_1"
+                android:src="@drawable/img_retroceder"
                 app:tint="#114232" />
 
             <!-- Campo de texto para búsqueda -->
@@ -70,7 +70,7 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/img_2"
+                android:src="@drawable/img_limpiar"
                 android:scaleType="fitXY"
                 android:contentDescription="Limpiar texto" />
         </LinearLayout>
@@ -99,7 +99,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_buscar"
                         />
 
                     <TextView
@@ -121,7 +121,8 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img" />
+                        android:src="@drawable/img_buscar"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -142,7 +143,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_buscar"
                         />
 
                     <TextView
@@ -164,7 +165,8 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img" />
+                        android:src="@drawable/img_buscar"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -185,7 +187,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_buscar"
                         />
 
                     <TextView
@@ -207,7 +209,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_buscar"
                         />
 
                     <TextView
@@ -229,7 +231,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_buscar"
                         />
 
                     <TextView
@@ -251,7 +253,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_buscar"
                         />
 
                     <TextView

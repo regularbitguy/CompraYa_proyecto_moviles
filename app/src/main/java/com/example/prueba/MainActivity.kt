@@ -1,48 +1,70 @@
 package com.example.prueba
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
 import com.example.prueba.databinding.ActivityMainBinding
+import com.example.prueba.ui.home.HomeFragment
+import com.example.prueba.ui.profile.ProfileFragment
+import com.example.prueba.ui.publications.PublicationsFragment
+import com.example.prueba.ui.publish.PublishFragment
+import com.example.prueba.ui.wishlist.WishlistFragment
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val rvProductos = findViewById<RecyclerView>(R.id.rvProductosRecientes)
-        rvProductos.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        val lista = listOf(
-            Producto("Logitech GT12", "Mouse Wireless", 345.0, R.drawable.img_mouse),
-            Producto("Monitor Ocelot Gaming OM-C32 ", "Monitor Gaming", 569.00, R.drawable.img_monitor),
-            Producto("Logitech G15 RGB", "Wireless Keyboard", 479.0, R.drawable.img_teclado),
-            Producto("Vsg Aguila", "Mouse Gaming", 69.0, R.drawable.img_mouse2),
-            Producto("Game Extreme", "Silla Gamer", 699.0, R.drawable.img_silla),
-            Producto("Logitech GT12", "Mouse Wireless", 345.0, R.drawable.img_mouse),
-            Producto("Monitor Ocelot Gaming OM-C32 ", "Monitor Gaming", 569.00, R.drawable.img_monitor),
-            Producto("Logitech G15 RGB", "Wireless Keyboard", 479.0, R.drawable.img_teclado),
-            Producto("Game Extreme", "Silla Gamer", 699.0, R.drawable.img_silla),
-            Producto("Vsg Aguila", "Mouse Gaming", 69.0, R.drawable.img_mouse2)
-        )
-        rvProductos.adapter = ProductoAdapter(lista)
-        asignarReferencias()
-    }
-    private fun asignarReferencias(){
-        // Botón Buscar
-        binding.btnBuscar.setOnClickListener {
-            val intent = Intent(this, Buscar::class.java)
-            startActivity(intent)
+        // Si no vienes desde otra activity, carga Home por defecto
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, HomeFragment())
+                .commit()
         }
+
+        // Leer intent para seleccionar tab específico
+        val selectedTab = intent?.getStringExtra("selected_tab")
+        when (selectedTab) {
+            "inicio" -> {
+                binding.bottomNavigation.selectedItemId = R.id.nav_inicio
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+            }
+            "deseados" -> {
+                binding.bottomNavigation.selectedItemId = R.id.nav_deseados
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WishlistFragment()).commit()
+            }
+            "publicar" -> {
+                binding.bottomNavigation.selectedItemId = R.id.nav_publicar
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, PublishFragment()).commit()
+            }
+            "publicaciones" -> {
+                binding.bottomNavigation.selectedItemId = R.id.nav_notificaciones
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, PublicationsFragment()).commit()
+            }
+            "perfil" -> {
+                binding.bottomNavigation.selectedItemId = R.id.nav_perfil
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ProfileFragment()).commit()
+            }
+        }
+
+        // (si ya tienes listener para bottom nav, déjalo como está)
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_inicio -> { replaceFragment(HomeFragment()); true }
+                R.id.nav_deseados -> { replaceFragment(WishlistFragment()); true }
+                R.id.nav_publicar -> { replaceFragment(PublishFragment()); true }
+                R.id.nav_notificaciones -> { replaceFragment(PublicationsFragment()); true }
+                R.id.nav_perfil -> { replaceFragment(ProfileFragment()); true }
+                else -> false
+            }
+        }
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.commit()
     }
 }

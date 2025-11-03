@@ -12,13 +12,13 @@ class Buscar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBuscarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        asignarReferencias()
+    }
 
-        // 🔙 Botón de retroceso
+    private fun asignarReferencias() {
         binding.iconBuscar.setOnClickListener {
             finish() // Cierra la pantalla actual y regresa a la anterior
         }
-
-        // ❌ Botón de limpiar búsqueda
         binding.btnLimpiar.setOnClickListener {
             binding.etBusqueda.text.clear() // Limpia el campo de búsqueda
         }
