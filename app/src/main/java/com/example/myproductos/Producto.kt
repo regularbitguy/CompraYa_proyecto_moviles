@@ -1,5 +1,6 @@
 package com.example.myproductos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,5 +31,16 @@ class Producto : AppCompatActivity() {
 
         adapter = SugerenciaAdapter(lista)
         recyclerSugerencias.adapter = adapter
+
+        val perfilVendedorLayout = findViewById<android.view.View>(R.id.layoutPerfilVendedor)
+
+        perfilVendedorLayout.setOnClickListener {
+            // Crear intent y abrir la nueva actividad
+            val intent = Intent(this, PerfilVendedorActivity::class.java)
+            startActivity(intent)
+
+            // (Opcional) Animación suave de transición
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 }
