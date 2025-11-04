@@ -28,7 +28,7 @@ class SugerenciaAdapter(private val lista: List<Sugerencia>) :
 
     override fun getItemCount(): Int = lista.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = lista[position]
         holder.img.setImageResource(item.imagenResId)
         holder.nombre.text = item.nombre
