@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prueba.Buscar
 import com.example.prueba.CategoriasActivity
 import com.example.prueba.Producto
-import com.example.prueba.ProductoAdapter
+import com.example.prueba.ProductoActivity
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.FragmentHomeBinding
+import com.example.prueba.adapter.ProductoAdapter
 import com.example.prueba.ui.chats.ChatsFragment
 
 class HomeFragment : Fragment() {
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
 
         binding.rvProductosRecientes.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvProductosRecientes.adapter = ProductoAdapter(lista)
+        binding.rvProductosRecientes.adapter = ProductoAdapter(requireContext(),lista)
 
         // Configurar botón buscar
         binding.btnBuscarCategoria.setOnClickListener {

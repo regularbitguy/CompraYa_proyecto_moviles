@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prueba.Producto
-import com.example.prueba.ProductoAdapter
+
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.FragmentPublicationsBinding
 

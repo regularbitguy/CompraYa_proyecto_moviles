@@ -1,32 +1,44 @@
-package com.example.prueba
+package com.example.prueba.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appmovilesproy.R
+import com.example.prueba.ProductoActivity
+import com.example.appmovilesproy.databinding.ItemProductoRecienteBinding
+import com.example.prueba.Producto
 
-class ProductoAdapter(private val productos: List<Producto>) :
-    RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img = itemView.findViewById<ImageView>(R.id.imgProducto)
-        val nombre = itemView.findViewById<TextView>(R.id.tvNombreProducto)
-        val descripcion = itemView.findViewById<TextView>(R.id.tvDescripcion)
-        val precio = itemView.findViewById<TextView>(R.id.tvPrecio)
-    }
+
+class ProductoAdapter(private val context: Context, private val listaProductos: List<Producto>) : RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
+
+    inner class ViewHolder(val binding: ItemProductoRecienteBinding) : RecyclerView.ViewHolder(binding.root)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_producto_reciente, parent, false)
-        return ViewHolder(view)
+        val binding = ItemProductoRecienteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val producto = productos[position]
-        holder.nombre.text = producto.nombre
-        holder.descripcion.text = producto.descripcion
-        holder.precio.text = "S/.${producto.precio}"
-        holder.img.setImageResource(producto.imagen)
+        val producto = listaProductos[position]
+
+        // Asignamos datos a la vista
+        holder.binding.tvNombreProducto.text = producto.nombre
+        holder.binding.tvDescripcion.text = producto.descripcion
+        holder.binding.tvPrecio.text = "S/. ${producto.precio}"
+        holder.binding.imgProducto.setImageResource(producto.imagen)
+
+        // Al hacer clic en el producto → abrir ProductoActivity
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ProductoActivity::class.java)
+            intent.putExtra("nombre", producto.nombre)
+            intent.putExtra("descripcion", producto.descripcion)
+            intent.putExtra("precio", producto.precio)
+            intent.putExtra("imagen", producto.imagen)
+            context.startActivity(intent)
+        }
     }
-    override fun getItemCount(): Int = productos.size
+
+    override fun getItemCount(): Int = listaProductos.size
 }

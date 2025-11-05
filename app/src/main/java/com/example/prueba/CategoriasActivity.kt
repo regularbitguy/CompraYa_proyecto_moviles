@@ -44,6 +44,10 @@ class CategoriasActivity : AppCompatActivity() {
                 .commit()
         }
 
+        // Botones del header (buscar / chat)
+        binding.btnBuscarCategoria.setOnClickListener {
+            startActivity(Intent(this, Buscar::class.java))
+        }
 
         binding.rvCategorias.layoutManager = GridLayoutManager(this, 3)
         binding.rvCategorias.adapter = CategoriaAdapter(listaCategorias)
@@ -93,15 +97,6 @@ class CategoriasActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-        }
-
-        // Botones del header (buscar / chat)
-        binding.btnBuscarCategoria.setOnClickListener {
-            startActivity(Intent(this, Buscar::class.java))
-        }
-        binding.btnChatCategoria.setOnClickListener {
-            // abrir actividad de chats si tienes una; ejemplo:
-            // startActivity(Intent(this, ChatsActivity::class.java))
         }
     }
 }
