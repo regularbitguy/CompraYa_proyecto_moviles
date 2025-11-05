@@ -6,55 +6,62 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="0dp">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+            android:padding="20dp"
+            android:text="Menú"
+            android:textColor="#114232"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnBuscarCategoria"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_item_producto"
+            android:src="@drawable/vector"
+            android:contentDescription="Buscar"
+            app:tint="#114232"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnChatCategoria"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_item_producto"
+            android:src="@drawable/img_chats"
+            android:contentDescription="Chat"
+            app:tint="#114232"
+            android:layout_marginEnd="20dp"/>
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/scrollViewHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:gravity="end"
-                android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:id="@+id/tvMenu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:fontFamily="@font/plus_jakarta_sans_semibold"
-                    android:text="Menú"
-                    android:textColor="#114232"
-                    android:textSize="30sp"
-                    android:layout_marginRight="180dp"
-                    android:textStyle="bold" />
-
-                <ImageButton
-                    android:id="@+id/btnBuscar"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:background="@drawable/bg_item_producto"
-                    android:src="@drawable/vector"
-                    android:contentDescription="Buscar"
-                    android:layout_marginEnd="8dp"
-                    app:tint="#114232" />
-
-                <ImageButton
-                    android:id="@+id/btnChats"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:background="@drawable/bg_item_producto"
-                    android:src="@drawable/img_chats"
-                    android:contentDescription="Notificaciones"
-                    app:tint="#114232" />
-            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_marginBottom="24dp" />
+                android:layout_marginBottom="28dp" />
 
 
             <TextView
@@ -236,18 +243,18 @@
             </GridLayout>
 
             <Button
-                android:id="@+id/btnCategorias"
+                android:id="@+id/btnPublicar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="90dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="0dp"
                 android:backgroundTint="#114232"
                 android:fontFamily="@font/plus_jakarta_sans_semibold"
-                android:padding="12dp"
+                android:padding="15dp"
                 android:text="Ver todas las categorías"
                 android:textColor="@color/white" />
 
         </LinearLayout>
     </ScrollView>
-
+    </LinearLayout>
 </RelativeLayout>

@@ -18,14 +18,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Si no vienes desde otra activity, carga Home por defecto
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment())
                 .commit()
         }
 
-        // Leer intent para seleccionar tab específico
         val selectedTab = intent?.getStringExtra("selected_tab")
         when (selectedTab) {
             "inicio" -> {
@@ -50,7 +48,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // (si ya tienes listener para bottom nav, déjalo como está)
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> { replaceFragment(HomeFragment()); true }

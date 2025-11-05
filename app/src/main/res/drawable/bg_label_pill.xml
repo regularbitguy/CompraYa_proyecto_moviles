@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="#EEF3F1" /> <!-- color pill suave -->
+    <solid android:color="#EEF3F1" />
     <corners android:radius="20dp" />
     <padding android:left="8dp" android:right="8dp" />
 </shape>

@@ -5,10 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/white">
 
-    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +34,7 @@
             android:src="@drawable/vector"
             android:contentDescription="Buscar"
             app:tint="#114232"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="10dp"/>
 
         <ImageButton
             android:id="@+id/btnChatCategoria"
@@ -45,10 +43,10 @@
             android:background="@drawable/bg_item_producto"
             android:src="@drawable/img_chats"
             android:contentDescription="Chat"
-            app:tint="#114232" />
+            app:tint="#114232"
+            android:layout_marginEnd="20dp"/>
     </LinearLayout>
 
-    <!-- RecyclerView: grid (se carga dinámicamente desde el adapter) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategorias"
         android:layout_width="match_parent"
@@ -57,7 +55,6 @@
         android:clipToPadding="false"
         android:paddingBottom="8dp" />
 
-    <!-- BottomNavigationView (usa tu bottom_nav_menu.xml) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationCategorias"
         android:layout_width="match_parent"
@@ -67,5 +64,4 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_nav_menu" />
-
 </LinearLayout>

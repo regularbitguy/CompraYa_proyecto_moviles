@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.prueba.databinding.ActivityCategoriasBinding
+import com.example.prueba.ui.chats.ChatsFragment
 
 class CategoriasActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCategoriasBinding
@@ -31,6 +32,14 @@ class CategoriasActivity : AppCompatActivity() {
             Categoria("Libros", R.drawable.img_libros),
             Categoria("Otras categorías", R.drawable.img_categorias)
         )
+
+        binding.btnChatCategoria.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ChatsFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
 
         binding.rvCategorias.layoutManager = GridLayoutManager(this, 3)
         binding.rvCategorias.adapter = CategoriaAdapter(listaCategorias)

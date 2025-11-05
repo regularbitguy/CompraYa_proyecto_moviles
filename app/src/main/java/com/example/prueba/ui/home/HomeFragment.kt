@@ -13,6 +13,7 @@ import com.example.prueba.Producto
 import com.example.prueba.ProductoAdapter
 import com.example.prueba.R
 import com.example.prueba.databinding.FragmentHomeBinding
+import com.example.prueba.ui.chats.ChatsFragment
 
 class HomeFragment : Fragment() {
 
@@ -45,9 +46,16 @@ class HomeFragment : Fragment() {
         binding.rvProductosRecientes.adapter = ProductoAdapter(lista)
 
         // Configurar botón buscar
-        binding.btnBuscar.setOnClickListener {
+        binding.btnBuscarCategoria.setOnClickListener {
             val intent = Intent(requireContext(), Buscar::class.java)
             startActivity(intent)
+        }
+        binding.btnChatCategoria.setOnClickListener {
+            val chatsFragment = ChatsFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, chatsFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         return view
@@ -60,7 +68,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnVerCategorias = view.findViewById<View>(R.id.btnCategorias)
+        val btnVerCategorias = view.findViewById<View>(R.id.btnPublicar)
         btnVerCategorias.setOnClickListener {
             val intent = Intent(requireContext(), CategoriasActivity::class.java)
             startActivity(intent)

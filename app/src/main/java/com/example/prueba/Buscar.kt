@@ -16,11 +16,11 @@ class Buscar : AppCompatActivity() {
     }
 
     private fun asignarReferencias() {
-        binding.iconBuscar.setOnClickListener {
-            finish() // Cierra la pantalla actual y regresa a la anterior
+        binding.btnRetroceder2.setOnClickListener {
+            finish()
         }
         binding.btnLimpiar.setOnClickListener {
-            binding.etBusqueda.text.clear() // Limpia el campo de búsqueda
+            binding.etBusqueda.text.clear()
         }
     }
 }
