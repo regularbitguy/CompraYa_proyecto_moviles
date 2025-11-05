@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="12dp">
+
+    <!-- Encabezado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp">
+
+        <ImageView
+            android:id="@+id/btnRetroceder2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/img_retroceder2"
+            android:contentDescription="Retroceder" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+            android:text="Tus publicaciones"
+            android:textColor="#114232"
+            android:textSize="22sp"
+            android:paddingStart="25dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Lista de publicaciones -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMisPublicaciones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="70dp" />
+</LinearLayout>
