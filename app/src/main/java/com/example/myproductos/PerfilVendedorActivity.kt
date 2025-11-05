@@ -1,6 +1,8 @@
 package com.example.myproductos
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,13 +14,13 @@ class PerfilVendedorActivity : AppCompatActivity() {
     private lateinit var recyclerProductosVendedor: RecyclerView
     private lateinit var adapter: SugerenciaAdapter
     private lateinit var btnBack: ImageButton
+    private lateinit var btnReportar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.perfil_vendedor)
 
-        recyclerProductosVendedor = findViewById(R.id.recyclerProductosVendedor)
-        btnBack = findViewById(R.id.btnBack)
+        asignarReferencias()
 
         // Configurar el RecyclerView horizontal
         recyclerProductosVendedor.layoutManager =
@@ -33,11 +35,21 @@ class PerfilVendedorActivity : AppCompatActivity() {
 
         adapter = SugerenciaAdapter(lista)
         recyclerProductosVendedor.adapter = adapter
+    }
+    private fun asignarReferencias(){
+        recyclerProductosVendedor = findViewById(R.id.recyclerProductosVendedor)
+        btnBack = findViewById(R.id.btnBack)
+        btnReportar = findViewById(R.id.btnReportar)
 
-        // Botón de retroceso
         btnBack.setOnClickListener {
+            val intent = Intent(this, Producto::class.java)
+            startActivity(intent)
+        }
+
+        btnReportar.setOnClickListener {
+            val intent = Intent(this, activity_reportar::class.java)
+            startActivity(intent)
             finish()
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         }
     }
 }
