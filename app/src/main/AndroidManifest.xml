@@ -33,6 +33,15 @@
             android:name=".RegistrarActivity"
             android:exported="false" />
         <activity
+            android:name=".activity_reportar"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilVendedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Producto"
+            android:exported="true" />
+        <activity
             android:name=".BienvenidaActivity"
             android:exported="true">
             <intent-filter>

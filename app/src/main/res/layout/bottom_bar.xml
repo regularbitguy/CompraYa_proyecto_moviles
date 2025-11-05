@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomBar"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:orientation="horizontal"
+    android:background="#FFFFFF"
+    android:elevation="10dp"
+    android:gravity="center"
+    android:weightSum="5"
+    android:paddingVertical="4dp">
+
+    <!-- 🏠 Inicio -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navInicio"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/inicio"
+            android:contentDescription="Inicio"
+            app:tint="#1E5631" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio"
+            android:textSize="11sp"
+            android:textColor="#1E5631" />
+    </LinearLayout>
+
+    <!-- ❤️ Lista de deseados -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navDeseos"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/lista"
+            android:contentDescription="Deseados"
+            app:tint="#666" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deseados"
+            android:textSize="11sp"
+            android:textColor="#666" />
+    </LinearLayout>
+
+    <!-- ➕ Botón central (Publicar) -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/boton_mas"
+            android:layout_gravity="center"
+            android:elevation="8dp">
+
+            <ImageView
+                android:id="@+id/navAgregar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/publi"
+                app:tint="#FFFFFF"
+                android:contentDescription="Publicar" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- 🗂️ Mis publicaciones -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navPublicaciones"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/publicaciones"
+            android:contentDescription="Mis publicaciones"
+            app:tint="#666" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mis productos"
+            android:textSize="11sp"
+            android:textColor="#666" />
+    </LinearLayout>
+
+    <!-- 👤 Perfil -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navPerfil"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/perfil"
+            android:contentDescription="Perfil"
+            app:tint="#666" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:textSize="11sp"
+            android:textColor="#666" />
+    </LinearLayout>
+</LinearLayout>
