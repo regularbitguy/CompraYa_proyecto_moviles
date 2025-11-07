@@ -38,6 +38,7 @@
             android:text="Perfil del vendedor"
             android:textColor="#1E5631"
             android:textSize="18sp"
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
             android:textStyle="bold"
             android:layout_marginStart="10dp"/>
     </LinearLayout>
@@ -91,6 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Juan Pérez"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="#111"/>
@@ -100,6 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="juanperez"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textSize="13sp"
                         android:textColor="#777"/>
 
@@ -120,9 +123,10 @@
                     android:layout_width="99dp"
                     android:layout_height="40dp"
                     android:text="Reportar"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
                     android:textAllCaps="false"
                     android:textColor="#FFF"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     android:backgroundTint="#1E5631"
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
@@ -132,6 +136,7 @@
                 android:text="Nombre completo"
                 android:textStyle="bold"
                 android:textSize="14sp"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -140,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:hint="Juan Pérez"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:background="@drawable/caja_texto"
                 android:enabled="false"
                 android:padding="10dp"
@@ -150,6 +156,7 @@
                 android:text="Email"
                 android:textStyle="bold"
                 android:textSize="14sp"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -160,6 +167,7 @@
                 android:hint="juanperez@gmail.com"
                 android:background="@drawable/caja_texto"
                 android:enabled="false"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:padding="10dp"
                 android:textSize="13sp"
                 android:layout_marginBottom="10dp"/>
@@ -168,6 +176,7 @@
                 android:text="Contacto"
                 android:textStyle="bold"
                 android:textSize="14sp"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -176,6 +185,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:hint="+51 987 654 321"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:background="@drawable/caja_texto"
                 android:enabled="false"
                 android:padding="10dp"
@@ -188,6 +198,7 @@
                 android:text="Productos publicados"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

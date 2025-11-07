@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prueba.Buscar
 import com.example.prueba.CategoriasActivity
 import com.example.prueba.Producto
-import com.example.prueba.ProductoActivity
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.FragmentHomeBinding
 import com.example.prueba.adapter.ProductoAdapter
@@ -21,10 +20,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -42,8 +38,7 @@ class HomeFragment : Fragment() {
             Producto("Game Extreme", "Silla Gamer", 699.0, R.drawable.img_silla)
         )
 
-        binding.rvProductosRecientes.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvProductosRecientes.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvProductosRecientes.adapter = ProductoAdapter(requireContext(),lista)
 
         // Configurar botón buscar
@@ -51,14 +46,14 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), Buscar::class.java)
             startActivity(intent)
         }
-        binding.btnChatCategoria.setOnClickListener {
+
+        binding.btnChats.setOnClickListener {
             val chatsFragment = ChatsFragment()
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, chatsFragment)
                 .addToBackStack(null)
                 .commit()
         }
-
         return view
     }
 
@@ -69,7 +64,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnVerCategorias = view.findViewById<View>(R.id.btnPublicar)
+        val btnVerCategorias = view.findViewById<View>(R.id.btnVerCategorias)
         btnVerCategorias.setOnClickListener {
             val intent = Intent(requireContext(), CategoriasActivity::class.java)
             startActivity(intent)

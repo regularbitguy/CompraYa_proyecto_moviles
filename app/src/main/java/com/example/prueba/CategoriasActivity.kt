@@ -44,7 +44,6 @@ class CategoriasActivity : AppCompatActivity() {
                 .commit()
         }
 
-        // Botones del header (buscar / chat)
         binding.btnBuscarCategoria.setOnClickListener {
             startActivity(Intent(this, Buscar::class.java))
         }
@@ -52,15 +51,13 @@ class CategoriasActivity : AppCompatActivity() {
         binding.rvCategorias.layoutManager = GridLayoutManager(this, 3)
         binding.rvCategorias.adapter = CategoriaAdapter(listaCategorias)
 
-        // Opcional: marcar el menú seleccionado si quieres reflejar que estás en Categorías.
-        // Si prefieres que ninguna opción esté seleccionada, comenta la siguiente línea.
         binding.bottomNavigationCategorias.menu.findItem(R.id.nav_inicio).isChecked = false
 
-        // Manejo del bottom navigation: lanzamos MainActivity indicando la pestaña que queremos
+
         binding.bottomNavigationCategorias.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> {
-                    // Regresa a MainActivity y selecciona la pestaña "Inicio"
+
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("selected_tab", "inicio")
                     startActivity(intent)

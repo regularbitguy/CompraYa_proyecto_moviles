@@ -1,63 +1,52 @@
 package com.example.appmovilesproy
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.appmovilesproy.databinding.ActivityMainBinding
+// 💡 Asegúrate de importar los fragmentos desde el paquete correcto de tu proyecto
 import com.example.prueba.ui.home.HomeFragment
 import com.example.prueba.ui.profile.ProfileFragment
 import com.example.prueba.ui.publications.PublicationsFragment
 import com.example.prueba.ui.publish.PublishFragment
 import com.example.prueba.ui.wishlist.WishlistFragment
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+
+        // --- INICIO DE LA LÓGICA SIMPLIFICADA ---
+
+        // 1. ÚNICA VERIFICACIÓN: Si por alguna razón se llega aquí sin un usuario,
+        //    lo redirigimos a la pantalla de login como medida de seguridad.
+        if (auth.currentUser == null) {
+            irAIniciarSesion()
+            return // Detiene la ejecución para no inflar la vista innecesariamente
+        }
+
+        // 2. Si hay un usuario, inflamos la vista y configuramos la UI.
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Cargar fragmento inicial (Home)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment())
-                .commit()
+            replaceFragment(HomeFragment())
         }
 
-        val selectedTab = intent?.getStringExtra("selected_tab")
-        when (selectedTab) {
-            "inicio" -> {
-                binding.bottomNavigation.selectedItemId = R.id.nav_inicio
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-                    HomeFragment()
-                ).commit()
-            }
-            "deseados" -> {
-                binding.bottomNavigation.selectedItemId = R.id.nav_deseados
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-                    WishlistFragment()
-                ).commit()
-            }
-            "publicar" -> {
-                binding.bottomNavigation.selectedItemId = R.id.nav_publicar
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-                    PublishFragment()
-                ).commit()
-            }
-            "publicaciones" -> {
-                binding.bottomNavigation.selectedItemId = R.id.nav_notificaciones
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-                    PublicationsFragment()
-                ).commit()
-            }
-            "perfil" -> {
-                binding.bottomNavigation.selectedItemId = R.id.nav_perfil
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-                    ProfileFragment()
-                ).commit()
-            }
-        }
+        // Control de navegación inferior
+        setupBottomNavigation()
 
+        // --- FIN DE LA LÓGICA SIMPLIFICADA ---
+    }
+
+    private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> { replaceFragment(HomeFragment()); true }
@@ -69,9 +58,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun replaceFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+    }
+
+    private fun irAIniciarSesion() {
+        val intent = Intent(this, IniciarSesionActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }
