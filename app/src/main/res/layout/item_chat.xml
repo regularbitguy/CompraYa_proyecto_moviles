@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Usuario ejemplo"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
             android:textSize="16sp"
             android:textColor="#114232"
             android:textStyle="bold" />
@@ -38,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Último mensaje del chat..."
+            android:fontFamily="@font/plus_jakarta_sans"
             android:textSize="14sp"
             android:textColor="#777777" />
     </LinearLayout>
@@ -47,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12:45"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
         android:textColor="#999999"
         android:textSize="12sp" />
 

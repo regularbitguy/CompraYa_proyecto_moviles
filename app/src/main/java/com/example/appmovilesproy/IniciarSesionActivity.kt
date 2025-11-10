@@ -2,7 +2,6 @@ package com.example.appmovilesproy
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appmovilesproy.databinding.ActivityIniciarSesionBinding
@@ -18,48 +17,38 @@ class IniciarSesionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityIniciarSesionBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN = 9001 // Request code para el inicio de sesión con Google
+    private val RC_SIGN_IN = 9001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIniciarSesionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. Inicializar Firebase Auth
         auth = FirebaseAuth.getInstance()
-
-        // 2. Configurar el cliente de Google Sign-In
         setupGoogleSignInClient()
-
-        // 3. Configurar los listeners para los botones
         setupActionListeners()
     }
 
     private fun setupGoogleSignInClient() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        try {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            googleSignInClient = GoogleSignIn.getClient(this, gso)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error al configurar Google Sign-In", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupActionListeners() {
-        // Iniciar sesión con Correo y Contraseña
-        binding.btnIniciarSesion.setOnClickListener {
-            iniciarSesionConEmail()
-        }
+        binding.btnIniciarSesion.setOnClickListener { iniciarSesionConEmail() }
+        binding.btnGoogle.setOnClickListener { iniciarSesionGoogle() }
 
-        // Iniciar sesión con Google
-        binding.btnGoogle.setOnClickListener {
-            iniciarSesionGoogle()
-        }
-
-        // Navegar a la pantalla de registro
         binding.btnRegistrate.setOnClickListener {
             startActivity(Intent(this, RegistrarActivity::class.java))
         }
 
-        // Navegar a la pantalla de recuperar contraseña
         binding.btnOlvidastePass.setOnClickListener {
             startActivity(Intent(this, RecuperarContrasenaActivity::class.java))
         }
@@ -76,12 +65,10 @@ class IniciarSesionActivity : AppCompatActivity() {
 
         auth.signInWithEmailAndPassword(correo, contrasena).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                // Si es exitoso, guarda la preferencia y navega al Home
                 guardarPreferenciaRecordarme(binding.chBoxRecordarme.isChecked)
                 Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                 irAMainActivity()
             } else {
-                // Si falla, muestra un error
                 Toast.makeText(this, "Error de autenticación: ${task.exception?.message}", Toast.LENGTH_LONG).show()
             }
         }
@@ -92,7 +79,6 @@ class IniciarSesionActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
-    // Recibe el resultado del inicio de sesión con Google
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -114,6 +100,12 @@ class IniciarSesionActivity : AppCompatActivity() {
                 val user = auth.currentUser
                 guardarPreferenciaRecordarme(binding.chBoxRecordarme.isChecked)
                 Toast.makeText(this, "Bienvenido, ${user?.displayName}", Toast.LENGTH_SHORT).show()
+
+                // Si no se seleccionó “recordarme”, cerrar sesión de Google al salir
+                if (!binding.chBoxRecordarme.isChecked) {
+                    googleSignInClient.signOut()
+                }
+
                 irAMainActivity()
             } else {
                 Toast.makeText(this, "Error de autenticación: ${task.exception?.message}", Toast.LENGTH_LONG).show()
@@ -128,9 +120,8 @@ class IniciarSesionActivity : AppCompatActivity() {
 
     private fun irAMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
-        // Limpia el historial para que el usuario no pueda volver a la pantalla de login
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-        finish() // Cierra IniciarSesionActivity
+        finish()
     }
 }

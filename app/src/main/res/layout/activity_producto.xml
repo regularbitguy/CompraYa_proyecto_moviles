@@ -81,6 +81,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#1B1B1B"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -110,6 +111,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/txtStock"
                         android:text="Stock: 5"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:textSize="13sp"
                         android:textColor="#555"/>
 
@@ -118,6 +120,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/txtEstado"
                         android:text="Estado: Casi Nuevo"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:textSize="13sp"
                         android:textColor="#555"/>
                 </LinearLayout>
@@ -128,6 +131,7 @@
                     android:id="@+id/txtPrecio"
                     android:text="S/. 250"
                     android:textSize="18sp"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
                     android:textStyle="bold"
                     android:textColor="#1E5631"/>
             </LinearLayout>
@@ -161,6 +165,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/txtVendedor"
                         android:text="Juan Perez"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="#111"/>
@@ -170,6 +175,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/txtUsuario"
                         android:text="jperez26"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:textSize="12sp"
                         android:textColor="#777"/>
                 </LinearLayout>
@@ -181,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Descripción:"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
                 android:textStyle="bold"
                 android:textSize="14sp"/>
 
@@ -190,6 +197,7 @@
                 android:id="@+id/txtDescripcion"
                 android:layout_marginTop="6dp"
                 android:text="Teclado mecánico gamer con retroiluminación RGB, ideal para juegos competitivos."
+                android:fontFamily="@font/plus_jakarta_sans_medium"
                 android:textSize="13sp"
                 android:textColor="#555"/>
 
@@ -200,6 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:text="Contactar con proveedor"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
                 android:textAllCaps="false"
                 android:backgroundTint="#1E5631"
                 android:textColor="#FFF"/>
@@ -210,151 +219,25 @@
                 android:text="Sugerencias para ti"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerSugerencias"
                 android:layout_marginTop="12dp"
+
                 android:layout_width="match_parent"
                 android:layout_height="230dp"/>
         </LinearLayout>
     </ScrollView>
 
-    <!-- 🔹 BARRA INFERIOR FIJA -->
-    <LinearLayout
+    <include
         android:id="@+id/bottomBar"
+        layout="@layout/bottom_bar"
         android:layout_width="0dp"
         android:layout_height="75dp"
-        android:orientation="horizontal"
-        android:background="#FFFFFF"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:weightSum="5"
-        android:paddingVertical="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- 🏠 Inicio -->
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/navInicio"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/inicio"
-                android:contentDescription="Inicio"
-                app:tint="#1E5631" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Inicio"
-                android:textSize="11sp"
-                android:textColor="#1E5631" />
-        </LinearLayout>
-
-        <!-- ❤️ Deseados -->
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/navDeseados"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/lista"
-                android:contentDescription="Deseados"
-                app:tint="#666" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Deseados"
-                android:textSize="11sp"
-                android:textColor="#666" />
-        </LinearLayout>
-
-        <!-- ➕ Botón central (Publicar) -->
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <FrameLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/boton_mas"
-                android:layout_gravity="center"
-                android:elevation="8dp">
-
-                <ImageView
-                    android:id="@+id/navAgregar"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/publi"
-                    app:tint="#FFFFFF"
-                    android:contentDescription="Publicar" />
-            </FrameLayout>
-        </LinearLayout>
-
-        <!-- 🗂️ Mis publicaciones -->
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/navPublicaciones"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/publicaciones"
-                android:contentDescription="Mis publicaciones"
-                app:tint="#666" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mis productos"
-                android:textSize="11sp"
-                android:textColor="#666" />
-        </LinearLayout>
-
-        <!-- 👤 Perfil -->
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/navPerfil"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/perfil"
-                android:contentDescription="Perfil"
-                app:tint="#666" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Perfil"
-                android:textSize="11sp"
-                android:textColor="#666" />
-        </LinearLayout>
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

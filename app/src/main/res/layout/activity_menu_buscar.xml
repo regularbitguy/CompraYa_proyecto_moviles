@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_above="@id/bottomNavigationSearch">
+        android:padding="16dp">
 
         <!-- 🟩 TÍTULO -->
         <TextView
@@ -270,16 +269,5 @@
         </ScrollView>
 
     </LinearLayout>
-
-    <!-- ✅ NAVBAR INFERIOR (igual al del menú principal) -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationSearch"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

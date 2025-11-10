@@ -18,28 +18,24 @@ class BienvenidaActivity : AppCompatActivity() {
 
         btnContinuar = findViewById(R.id.btnContinuar)
 
+        // Botón normal para nuevos usuarios
         btnContinuar.setOnClickListener {
-            val intent = Intent(this, RegistrarActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegistrarActivity::class.java))
         }
 
-        // 🔹 Verificar si el usuario ya está logueado y desea ser recordado
+        // 🔹 Verificar si hay sesión activa y "recordarme" está marcado
         val prefs = getSharedPreferences("userPrefs", MODE_PRIVATE)
         val recordar = prefs.getBoolean("recordarme", false)
         val user = FirebaseAuth.getInstance().currentUser
 
-        // 🔹 Retraso leve para permitir que la UI se vea (opcional)
-        Handler(Looper.getMainLooper()).postDelayed({
-            if (user != null && recordar) {
-                // Usuario logueado + Recordarme activado → Ir al MainActivity
+        if (user != null && recordar) {
+            // Mostrar una pantalla de carga tipo Splash (por ejemplo, 1.5 segundos)
+            Handler(Looper.getMainLooper()).postDelayed({
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
-            } else {
-                // No logueado o sin recordar → Mantener flujo normal
-                // (es decir, se queda en la pantalla de bienvenida)
-            }
-        }, 1000) // 1 segundo opcional de "splash"
+            }, 1500)
+        }
     }
 }

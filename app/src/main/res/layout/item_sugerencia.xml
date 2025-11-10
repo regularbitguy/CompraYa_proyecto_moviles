@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Teclado Logitech G213"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
         android:textStyle="bold"
         android:textSize="13sp"
         android:textColor="#111"/>
@@ -31,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Teclado"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
         android:textSize="12sp"
         android:textColor="#777"
         android:layout_marginBottom="4dp"/>
@@ -48,6 +50,7 @@
             android:layout_height="wrap_content"
             android:text="S/. 250"
             android:textColor="#1E5631"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
             android:textStyle="bold"
             android:textSize="14sp"/>
 

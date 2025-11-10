@@ -55,13 +55,10 @@
         android:clipToPadding="false"
         android:paddingBottom="8dp" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationCategorias"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/black"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/bottom_nav_menu" />
+    <include
+        android:id="@+id/bottomBar"
+        layout="@layout/bottom_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </LinearLayout>

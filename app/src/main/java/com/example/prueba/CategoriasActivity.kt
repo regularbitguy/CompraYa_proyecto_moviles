@@ -1,18 +1,21 @@
 package com.example.prueba
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.appmovilesproy.CategoriaAdapter
 import com.example.appmovilesproy.MainActivity
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.ActivityCategoriasBinding
-
 import com.example.prueba.ui.chats.ChatsFragment
 
 class CategoriasActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityCategoriasBinding
+    private lateinit var navIcons: List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +40,14 @@ class CategoriasActivity : AppCompatActivity() {
             Categoria("Otras categorías", R.drawable.img_categorias)
         )
 
+        // Configurar el RecyclerView
+        binding.rvCategorias.layoutManager = GridLayoutManager(this, 3)
+        binding.rvCategorias.adapter = CategoriaAdapter(listaCategorias)
+
+        // Acciones de los botones superiores
         binding.btnChatCategoria.setOnClickListener {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ChatsFragment())
+                .replace(R.id.btnChatCategoria, ChatsFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -48,52 +56,44 @@ class CategoriasActivity : AppCompatActivity() {
             startActivity(Intent(this, Buscar::class.java))
         }
 
-        binding.rvCategorias.layoutManager = GridLayoutManager(this, 3)
-        binding.rvCategorias.adapter = CategoriaAdapter(listaCategorias)
+        // --- Configurar la barra inferior personalizada ---
+        navIcons = listOf(
+            findViewById(R.id.navInicio),
+            findViewById(R.id.navDeseos),
+            findViewById(R.id.navAgregar),
+            findViewById(R.id.navPublicaciones),
+            findViewById(R.id.navPerfil)
+        )
 
-        binding.bottomNavigationCategorias.menu.findItem(R.id.nav_inicio).isChecked = false
+        setupBottomBar()
+    }
 
-
-        binding.bottomNavigationCategorias.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_inicio -> {
-
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("selected_tab", "inicio")
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.nav_deseados -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("selected_tab", "deseados")
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.nav_publicar -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("selected_tab", "publicar")
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.nav_notificaciones -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("selected_tab", "publicaciones")
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.nav_perfil -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("selected_tab", "perfil")
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                else -> false
-            }
+    private fun setupBottomBar() {
+        findViewById<ImageView>(R.id.navInicio).setOnClickListener {
+            irAMainConTab("inicio")
         }
+
+        findViewById<ImageView>(R.id.navDeseos).setOnClickListener {
+            irAMainConTab("deseados")
+        }
+
+        findViewById<ImageView>(R.id.navAgregar).setOnClickListener {
+            irAMainConTab("publicar")
+        }
+
+        findViewById<ImageView>(R.id.navPublicaciones).setOnClickListener {
+            irAMainConTab("publicaciones")
+        }
+
+        findViewById<ImageView>(R.id.navPerfil).setOnClickListener {
+            irAMainConTab("perfil")
+        }
+    }
+
+    private fun irAMainConTab(tab: String) {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("selected_tab", tab)
+        startActivity(intent)
+        finish()
     }
 }
