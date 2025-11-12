@@ -36,9 +36,8 @@ class PublicacionAdapter(private val lista: List<Producto>) : RecyclerView.Adapt
             .into(holder.imgProducto)
 
 
-        holder.tvNombreProducto.text = producto.nombre
+        holder.tvNombreProducto.text = producto.titulo
         holder.tvDescripcion.text = producto.descripcion
-
         holder.tvPrecio.text = String.format("S/. %.2f", producto.precio)
     }
     override fun getItemCount(): Int = lista.size

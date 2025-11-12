@@ -19,7 +19,7 @@ class ProductoAdapter(private val context: Context, private val listaProductos: 
     class ProductoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagen: ImageView = itemView.findViewById(R.id.imgProducto)
         val nombre: TextView = itemView.findViewById(R.id.tvNombreProducto)
-
+        val descripcion: TextView = itemView.findViewById(R.id.tvDescripcion)
         val precio: TextView = itemView.findViewById(R.id.tvPrecio)
     }
 
@@ -31,17 +31,15 @@ class ProductoAdapter(private val context: Context, private val listaProductos: 
     override fun onBindViewHolder(holder: ProductoViewHolder, position: Int) {
         val producto = listaProductos[position]
 
-        holder.nombre.text = producto.nombre
+        holder.nombre.text = producto.titulo
+        holder.descripcion.text = producto.descripcion
         holder.precio.text = "S/ ${producto.precio}"
 
-        Glide.with(context)
-            .load(producto.imagenUrl)
-            .placeholder(R.drawable.img_teclado)
-            .into(holder.imagen)
+        Glide.with(context).load(producto.imagenUrl).placeholder(R.drawable.img_teclado).into(holder.imagen)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductoActivity::class.java)
-            intent.putExtra("nombre", producto.nombre)
+            intent.putExtra("nombre", producto.titulo)
             intent.putExtra("descripcion", producto.descripcion)
             intent.putExtra("precio", producto.precio)
             intent.putExtra("imagenUrl", producto.imagenUrl)

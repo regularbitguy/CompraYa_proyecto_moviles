@@ -56,20 +56,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun cargarProductos() {
-        db.collection("productos")
-            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener { result ->
-                listaProductos.clear()
-                for (doc in result) {
-                    val producto = doc.toObject(Producto::class.java)
-                    listaProductos.add(producto)
-                }
-                adapter.notifyDataSetChanged()
+        db.collection("productos").orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING).get().addOnSuccessListener {
+            result ->
+            listaProductos.clear()
+            for (doc in result) {
+                val producto = doc.toObject(Producto::class.java)
+                listaProductos.add(producto)
             }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Error al cargar productos", Toast.LENGTH_SHORT).show()
-            }
+            adapter.notifyDataSetChanged()
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), "Error al cargar productos", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {
