@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Producto"
+    tools:context=".ProductoActivity"
     android:background="#F8F8F8">
 
     <!-- 🔹 BARRA SUPERIOR -->
@@ -87,11 +87,12 @@
 
             <!-- Imágenes del producto -->
             <ImageView
-                android:layout_marginTop="12dp"
+                android:id="@+id/imgProd"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginTop="12dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/teclado"/>
+                android:src="@drawable/teclado" />
 
             <!-- Stock / Estado / Precio -->
             <LinearLayout
@@ -105,15 +106,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtStock"
-                        android:text="Stock: 5"
-                        android:fontFamily="@font/plus_jakarta_sans_medium"
-                        android:textSize="13sp"
-                        android:textColor="#555"/>
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package com.example.appmovilesproy
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appmovilesproy.databinding.ActivityIniciarSesionBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -17,7 +18,20 @@ class IniciarSesionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityIniciarSesionBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN = 9001
+
+    // Lanzador moderno para el resultado del inicio de sesión con Google
+    private val googleSignInLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                try {
+                    val account = task.getResult(ApiException::class.java)!!
+                    firebaseAuthConGoogle(account.idToken!!)
+                } catch (e: ApiException) {
+                    Toast.makeText(this, "Error con Google Sign-In: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +79,11 @@ class IniciarSesionActivity : AppCompatActivity() {
 
         auth.signInWithEmailAndPassword(correo, contrasena).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                guardarPreferenciaRecordarme(binding.chBoxRecordarme.isChecked)
+                val recordar = binding.chBoxRecordarme.isChecked
+                guardarPreferenciaRecordarme(recordar)
+                if (!recordar) {
+                    auth.signOut()
+                }
                 Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                 irAMainActivity()
             } else {
@@ -76,21 +94,7 @@ class IniciarSesionActivity : AppCompatActivity() {
 
     private fun iniciarSesionGoogle() {
         val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)!!
-                firebaseAuthConGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                Toast.makeText(this, "Error con Google Sign-In: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-        }
+        googleSignInLauncher.launch(signInIntent)
     }
 
     private fun firebaseAuthConGoogle(idToken: String) {
@@ -98,15 +102,24 @@ class IniciarSesionActivity : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 val user = auth.currentUser
-                guardarPreferenciaRecordarme(binding.chBoxRecordarme.isChecked)
+                val recordar = binding.chBoxRecordarme.isChecked
+                guardarPreferenciaRecordarme(recordar)
+
                 Toast.makeText(this, "Bienvenido, ${user?.displayName}", Toast.LENGTH_SHORT).show()
 
-                // Si no se seleccionó “recordarme”, cerrar sesión de Google al salir
-                if (!binding.chBoxRecordarme.isChecked) {
-                    googleSignInClient.signOut()
+                // --- INICIO DE LA SOLUCIÓN ---
+                if (recordar) {
+                    // Si quiere ser recordado, simplemente vamos a MainActivity
+                    irAMainActivity()
+                } else {
+                    // Si NO quiere ser recordado, primero cerramos sesión en Google y Firebase,
+                    // y LUEGO navegamos.
+                    googleSignInClient.signOut().addOnCompleteListener {
+                        auth.signOut() // También cerramos la sesión de Firebase
+                        irAMainActivity()
+                    }
                 }
-
-                irAMainActivity()
+                // --- FIN DE LA SOLUCIÓN ---
             } else {
                 Toast.makeText(this, "Error de autenticación: ${task.exception?.message}", Toast.LENGTH_LONG).show()
             }

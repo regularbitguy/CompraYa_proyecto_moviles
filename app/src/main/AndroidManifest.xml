@@ -29,10 +29,7 @@
             android:name=".RecuperarContrasenaActivity"
             android:exported="false" />
         <activity
-            android:name=".CodigoVerificadoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VerificacionActivity"
+            android:name="com.example.myproductos.InfoPersonalActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -53,7 +50,7 @@
             android:name=".PerfilVendedorActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.prueba.ProductoActivity"
+            android:name=".ProductoActivity"
             android:exported="false" />
         <activity
             android:name="com.example.prueba.CategoriasActivity"
@@ -74,3 +71,4 @@
     </application>
 
 </manifest>
+

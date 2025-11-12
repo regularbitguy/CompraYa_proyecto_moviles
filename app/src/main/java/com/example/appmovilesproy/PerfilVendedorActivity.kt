@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appmovilesproy.model.Producto
 
 class PerfilVendedorActivity : AppCompatActivity() {
 
@@ -27,11 +28,10 @@ class PerfilVendedorActivity : AppCompatActivity() {
 
         // Datos simulados (puedes usar los mismos de producto)
         val lista = listOf(
-            Sugerencia("Teclado Logitech", "Teclado", "S/. 250", R.drawable.teclado),
-            Sugerencia("Mouse Redragon", "Mouse", "S/. 120", R.drawable.teclado),
-            Sugerencia("Audífono HyperX", "Audífono", "S/. 180", R.drawable.teclado)
+            Sugerencia("Teclado Logitech", "Teclado", "S/. 250", R.drawable.img_teclado),
+            Sugerencia("Mouse Redragon", "Mouse", "S/. 120", R.drawable.img_mouse),
+            Sugerencia("Silla Gamer", "Silla", "S/. 400", R.drawable.img_silla)
         )
-
         adapter = SugerenciaAdapter(lista)
         recyclerProductosVendedor.adapter = adapter
     }

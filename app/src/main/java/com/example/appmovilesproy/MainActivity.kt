@@ -1,70 +1,3 @@
-//package com.example.appmovilesproy
-//
-//import android.content.Intent
-//import android.os.Bundle
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.fragment.app.Fragment
-//import com.example.appmovilesproy.databinding.ActivityMainBinding
-//import com.example.prueba.ui.home.HomeFragment
-//import com.example.prueba.ui.profile.ProfileFragment
-//import com.example.prueba.ui.publications.PublicationsFragment
-//import com.example.prueba.ui.publish.PublishFragment
-//import com.example.prueba.ui.wishlist.WishlistFragment
-//import com.google.firebase.auth.FirebaseAuth
-//
-//class MainActivity : AppCompatActivity() {
-//
-//    private lateinit var binding: ActivityMainBinding
-//    private lateinit var auth: FirebaseAuth
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        auth = FirebaseAuth.getInstance()
-//
-//        val prefs = getSharedPreferences("userPrefs", MODE_PRIVATE)
-//        val recordar = prefs.getBoolean("recordarme", false)
-//
-//        if (auth.currentUser == null || !recordar) {
-//            auth.signOut()
-//            irAIniciarSesion()
-//            return
-//        }
-//
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        if (savedInstanceState == null) {
-//            replaceFragment(HomeFragment())
-//        }
-//
-//        setupBottomNavigation()
-//    }
-//
-//    private fun setupBottomNavigation() {
-//        binding.bottomNavigation.setOnItemSelectedListener { item ->
-//            when (item.itemId) {
-//                R.id.nav_inicio -> { replaceFragment(HomeFragment()); true }
-//                R.id.nav_deseados -> { replaceFragment(WishlistFragment()); true }
-//                R.id.nav_publicar -> { replaceFragment(PublishFragment()); true }
-//                R.id.nav_notificaciones -> { replaceFragment(PublicationsFragment()); true }
-//                R.id.nav_perfil -> { replaceFragment(ProfileFragment()); true }
-//                else -> false
-//            }
-//        }
-//    }
-//
-//    private fun replaceFragment(fragment: Fragment) {
-//        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
-//    }
-//
-//    private fun irAIniciarSesion() {
-//        val intent = Intent(this, IniciarSesionActivity::class.java)
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        startActivity(intent)
-//        finish()
-//    }
-//}
-
 package com.example.appmovilesproy
 
 import android.content.Intent
@@ -86,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
 
-    // Lista de íconos para cambiar color según selección
     private lateinit var navIcons: List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicializamos íconos de la barra
         navIcons = listOf(
             findViewById(R.id.navInicio),
             findViewById(R.id.navDeseos),
@@ -163,7 +94,6 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
-    // Cambiar color de ícono activo/inactivo
     private fun setActive(activeIcon: ImageView) {
         navIcons.forEach {
             it.setColorFilter(Color.parseColor("#666666")) // inactivo

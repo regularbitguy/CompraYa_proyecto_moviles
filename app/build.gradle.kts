@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
     id("com.google.gms.google-services")
 }
 
@@ -50,13 +51,14 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.9.5")
     implementation(libs.androidx.constraintlayout)
 
-    // Firebase Bill of Materials (para manejar versiones automáticamente)
     implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
 
     // Firebase Authentication y Firestore
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore-ktx:24.0.0")
-
+    implementation ("com.google.firebase:firebase-storage")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
     // Google Sign-In
     implementation("com.google.android.gms:play-services-auth:21.2.0")
 

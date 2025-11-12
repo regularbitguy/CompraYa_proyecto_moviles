@@ -91,6 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Juan Pérez"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
                         android:textColor="#111"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -116,7 +117,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- 🔸 Datos de contacto -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

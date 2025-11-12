@@ -1,7 +1,8 @@
-package com.example.prueba
+package com.example.appmovilesproy
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.appmovilesproy.databinding.ActivityProductoBinding
 
 class ProductoActivity : AppCompatActivity() {
@@ -13,21 +14,18 @@ class ProductoActivity : AppCompatActivity() {
         binding = ActivityProductoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 🔹 Recibir los datos del producto desde el intent
         val nombre = intent.getStringExtra("nombre")
-        val precio = intent.getStringExtra("precio")
         val descripcion = intent.getStringExtra("descripcion")
-        val imagenRes = intent.getIntExtra("imagen", 0)
+        val precio = intent.getDoubleExtra("precio", 0.0)
+        val imagenUrl = intent.getStringExtra("imagenUrl")
 
-        // 🔹 Asignar los datos a la vista
         binding.txtNombreProducto.text = nombre
-        binding.txtPrecio.text = precio
         binding.txtDescripcion.text = descripcion
-        if (imagenRes != 0) binding.imgVendedor.setImageResource(imagenRes)
+        binding.txtPrecio.text = "S/ $precio"
 
-        // 🔹 Botón volver
-        binding.btnBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
-        }
+        Glide.with(this)
+            .load(imagenUrl)
+            .placeholder(R.drawable.img_teclado)
+            .into(binding.imgProd)
     }
 }

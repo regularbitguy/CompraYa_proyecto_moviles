@@ -5,69 +5,75 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.prueba.Buscar
-import com.example.prueba.CategoriasActivity
-import com.example.prueba.Producto
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.FragmentHomeBinding
-import com.example.prueba.adapter.ProductoAdapter
+import com.example.appmovilesproy.ProductoActivity
+import com.example.appmovilesproy.adapter.ProductoAdapter
+import com.example.appmovilesproy.model.Producto
+import com.example.prueba.Buscar
+import com.example.prueba.CategoriasActivity
 import com.example.prueba.ui.chats.ChatsFragment
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val db = FirebaseFirestore.getInstance()
+
+    private val listaProductos = mutableListOf<Producto>()
+    private lateinit var adapter: ProductoAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
 
-        // Configurar RecyclerView
-        val lista = listOf(
-            Producto("Logitech GT12", "Mouse Wireless", 345.0, R.drawable.img_mouse),
-            Producto("Monitor Ocelot Gaming OM-C32 ", "Monitor Gaming", 569.00, R.drawable.img_monitor),
-            Producto("Logitech G15 RGB", "Wireless Keyboard", 479.0, R.drawable.img_teclado),
-            Producto("Vsg Aguila", "Mouse Gaming", 69.0, R.drawable.img_mouse2),
-            Producto("Game Extreme", "Silla Gamer", 699.0, R.drawable.img_silla),
-            Producto("Logitech GT12", "Mouse Wireless", 345.0, R.drawable.img_mouse),
-            Producto("Monitor Ocelot Gaming OM-C32 ", "Monitor Gaming", 569.00, R.drawable.img_monitor),
-            Producto("Logitech G15 RGB", "Wireless Keyboard", 479.0, R.drawable.img_teclado),
-            Producto("Vsg Aguila", "Mouse Gaming", 69.0, R.drawable.img_mouse2),
-            Producto("Game Extreme", "Silla Gamer", 699.0, R.drawable.img_silla)
-        )
+        adapter = ProductoAdapter(requireContext(), listaProductos)
+        binding.rvProductosRecientes.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvProductosRecientes.adapter = adapter
 
-        binding.rvProductosRecientes.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvProductosRecientes.adapter = ProductoAdapter(requireContext(),lista)
+        cargarProductos()
 
-        // Configurar botón buscar
         binding.btnBuscarCategoria.setOnClickListener {
-            val intent = Intent(requireContext(), Buscar::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), Buscar::class.java))
         }
 
         binding.btnChats.setOnClickListener {
-            val chatsFragment = ChatsFragment()
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, chatsFragment)
+                .replace(R.id.fragment_container, ChatsFragment())
                 .addToBackStack(null)
                 .commit()
         }
-        return view
+
+        binding.btnVerCategorias.setOnClickListener {
+            startActivity(Intent(requireContext(), CategoriasActivity::class.java))
+        }
+
+        return binding.root
+    }
+
+    private fun cargarProductos() {
+        db.collection("productos")
+            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { result ->
+                listaProductos.clear()
+                for (doc in result) {
+                    val producto = doc.toObject(Producto::class.java)
+                    listaProductos.add(producto)
+                }
+                adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error al cargar productos", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val btnVerCategorias = view.findViewById<View>(R.id.btnVerCategorias)
-        btnVerCategorias.setOnClickListener {
-            val intent = Intent(requireContext(), CategoriasActivity::class.java)
-            startActivity(intent)
-        }
     }
 }
