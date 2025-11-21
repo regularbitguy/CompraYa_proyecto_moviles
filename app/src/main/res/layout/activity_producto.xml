@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductoActivity"
+    android:background="#F8F8F8">
+
+    <!-- 🔹 BARRA SUPERIOR -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back"
+            android:background="@drawable/circulo"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/btnSearch"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/search"
+                android:background="@drawable/circulo"
+                android:scaleType="fitCenter"
+                android:padding="10dp"
+                android:layout_marginEnd="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btnMessage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/message"
+                android:background="@drawable/circulo"
+                android:scaleType="fitCenter"
+                android:padding="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 🔹 CONTENIDO SCROLLABLE -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="always"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtNombreProducto"
+                android:text="Teclado Logitech Gamer Pro G"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1B1B1B"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <!-- Imágenes del producto -->
+            <ImageView
+                android:id="@+id/imgProd"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/teclado" />
+
+            <!-- Stock / Estado / Precio -->
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtEstado"
+                        android:text="Estado: Casi Nuevo"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:textSize="13sp"
+                        android:textColor="#555"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtPrecio"
+                    android:text="S/. 250"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:textStyle="bold"
+                    android:textColor="#1E5631"/>
+            </LinearLayout>
+
+            <!-- Vendedor -->
+            <LinearLayout
+                android:id="@+id/layoutPerfilVendedor"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgVendedor"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/user"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circulo"
+                    android:padding="2dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtVendedor"
+                        android:text="Juan Perez"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#111"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtUsuario"
+                        android:text="jperez26"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:textSize="12sp"
+                        android:textColor="#777"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Descripción -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Descripción:"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDescripcion"
+                android:layout_marginTop="6dp"
+                android:text="Teclado mecánico gamer con retroiluminación RGB, ideal para juegos competitivos."
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:textSize="13sp"
+                android:textColor="#555"/>
+
+            <!-- Botón Contactar -->
+            <Button
+                android:id="@+id/btnContactar"
+                android:layout_marginTop="18dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Contactar con proveedor"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:textAllCaps="false"
+                android:backgroundTint="#074222"
+                android:textColor="#FFF"/>
+
+            <!-- Sugerencias -->
+            <TextView
+                android:layout_marginTop="18dp"
+                android:text="Sugerencias para ti"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerSugerencias"
+                android:layout_marginTop="12dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="230dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/bottomBar"
+        layout="@layout/bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

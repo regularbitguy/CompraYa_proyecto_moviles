@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_compraya"
+        android:roundIcon="@mipmap/ic_compraya_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppMovilesProy">
+        <activity
+            android:name=".MiPerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RecuperarContrasenaActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.appmovilesproy.InfoPersonalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IniciarSesionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistroExitosoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilVendedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductoActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.prueba.CategoriasActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.prueba.Buscar"
+            android:exported="false" />
+        <activity
+            android:name=".BienvenidaActivity"
+            android:exported="false">
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
+

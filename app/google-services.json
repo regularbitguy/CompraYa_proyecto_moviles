@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "426241113425",
+    "firebase_url": "https://compraya-6c1cc-default-rtdb.firebaseio.com",
+    "project_id": "compraya-6c1cc",
+    "storage_bucket": "compraya-6c1cc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426241113425:android:63867dd1b19f272fe6a770",
+        "android_client_info": {
+          "package_name": "com.example.appmovilesproy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426241113425-gt7kmosp2vhrhst7tc9p6rhqvm9gjss6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appmovilesproy",
+            "certificate_hash": "e4542e4b2def56a2b58e2d0fe17dc684f460a8ed"
+          }
+        },
+        {
+          "client_id": "426241113425-bh2q50e2egmkfpvqflps8fu8mu1d7s3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTR-Gcvdl-fFdjQQElAL70Z5x3lDJiCV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426241113425-bh2q50e2egmkfpvqflps8fu8mu1d7s3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

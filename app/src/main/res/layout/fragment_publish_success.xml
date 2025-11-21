@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:padding="32dp">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/img_exito"
+        android:contentDescription="Publicación exitosa"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Producto publicado con éxito!"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#114232"
+        android:fontFamily="@font/plus_jakarta_sans_semibold"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu producto ya está visible para otros usuarios."
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
+        android:gravity="center"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/btnVolverInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver al inicio"
+        android:backgroundTint="#114232"
+        android:textColor="@color/white"
+        android:fontFamily="@font/plus_jakarta_sans_semibold"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="10dp"/>
+</LinearLayout>

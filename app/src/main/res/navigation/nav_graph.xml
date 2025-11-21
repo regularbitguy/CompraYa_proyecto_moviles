@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/principalFragment">
+
+    <fragment
+        android:id="@+id/principalFragment"
+        android:name="com.example.prueba.ui.home.HomeFragment"
+        android:label="Principal" />
+
+    <fragment
+        android:id="@+id/deseadosFragment"
+        android:name="com.example.prueba.ui.wishlist.WishlistFragment"
+        android:label="Deseados" />
+
+    <fragment
+        android:id="@+id/publicarFragment"
+        android:name="com.example.prueba.ui.publish.PublishFragment"
+        android:label="Publicar" />
+
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.prueba.ui.profile.ProfileFragment"
+        android:label="Perfil" />
+
+    <!-- Fragment para categorías que se abre desde Home -->
+    <fragment
+        android:id="@+id/categoriasFragment"
+        android:name="com.example.prueba.ui.categories.CategoriesFragment"
+        android:label="Categorias" />
+</navigation>
