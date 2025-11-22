@@ -24,12 +24,9 @@ class PublicationsFragment : Fragment() {
     private val listaProductos = mutableListOf<Producto>()
     private lateinit var adapter: ProductoAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPublicationsBinding.inflate(inflater, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
+        _binding = FragmentPublicationsBinding.inflate(inflater, container, false)
         adapter = ProductoAdapter(requireContext(), listaProductos)
         binding.rvMisPublicaciones.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMisPublicaciones.adapter = adapter
@@ -39,7 +36,6 @@ class PublicationsFragment : Fragment() {
         binding.btnRetroceder2.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
-
         return binding.root
     }
 
@@ -51,18 +47,15 @@ class PublicationsFragment : Fragment() {
             return
         }
 
-        db.collection("productos")
-            .whereEqualTo("usuarioId", usuarioId)
-            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener { result ->
-                listaProductos.clear()
-                for (doc in result) {
-                    val producto = doc.toObject(Producto::class.java)
-                    listaProductos.add(producto)
-                }
-                adapter.notifyDataSetChanged()
+        db.collection("productos").whereEqualTo("usuarioId", usuarioId).orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING).get().addOnSuccessListener {
+                result ->
+            listaProductos.clear()
+            for (doc in result) {
+                val producto = doc.toObject(Producto::class.java)
+                listaProductos.add(producto)
             }
+            adapter.notifyDataSetChanged()
+        }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error al cargar publicaciones", Toast.LENGTH_SHORT).show()
             }

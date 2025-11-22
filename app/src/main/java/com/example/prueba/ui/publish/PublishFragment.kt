@@ -59,7 +59,13 @@ class PublishFragment : Fragment() {
     private fun publicarProducto() {
         val titulo = binding.etTitulo.text.toString().trim()
         val precioTexto = binding.etPrecio.text.toString().trim()
-        val precio = precioTexto.toDoubleOrNull()
+
+        if (precioTexto.isEmpty()) {
+            binding.etPrecio.error = "Ingresa un precio"
+            return
+        }
+
+        val precio = precioTexto.toDoubleOrNull() ?: 0.0
         val categoria = binding.etCategoria.text.toString().trim()
         val estado = binding.etEstado.text.toString().trim()
         val descripcion = binding.etDescripcion.text.toString().trim()
@@ -93,13 +99,11 @@ class PublishFragment : Fragment() {
                         "timestamp" to System.currentTimeMillis()
                     )
 
-                    db.collection("productos")
-                        .add(producto)
-                        .addOnSuccessListener {
-                            progressDialog.dismiss()
-                            Toast.makeText(requireContext(), "Producto publicado con éxito", Toast.LENGTH_SHORT).show()
-                            limpiarCampos()
-                        }
+                    db.collection("productos").add(producto).addOnSuccessListener {
+                        progressDialog.dismiss()
+                        Toast.makeText(requireContext(), "Producto publicado con éxito", Toast.LENGTH_SHORT).show()
+                        limpiarCampos()
+                    }
                         .addOnFailureListener { e ->
                             progressDialog.dismiss()
                             Toast.makeText(requireContext(), "Error al guardar: ${e.message}", Toast.LENGTH_SHORT).show()

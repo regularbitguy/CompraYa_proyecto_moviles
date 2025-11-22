@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMovilesProy">
         <activity
-            android:name=".MiPerfilActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -27,9 +24,6 @@
         </activity>
         <activity
             android:name=".RecuperarContrasenaActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.example.myproductos.InfoPersonalActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -59,16 +53,10 @@
             android:name="com.example.prueba.Buscar"
             android:exported="false" />
         <activity
-            android:name=".Producto"
-            android:exported="false" />
-        <activity
             android:name=".BienvenidaActivity"
-            android:exported="false"></activity>
-
+            android:exported="false" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>
-

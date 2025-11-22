@@ -19,7 +19,6 @@ class IniciarSesionActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
-    // Lanzador moderno para el resultado del inicio de sesión con Google
     private val googleSignInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -107,19 +106,14 @@ class IniciarSesionActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Bienvenido, ${user?.displayName}", Toast.LENGTH_SHORT).show()
 
-                // --- INICIO DE LA SOLUCIÓN ---
                 if (recordar) {
-                    // Si quiere ser recordado, simplemente vamos a MainActivity
                     irAMainActivity()
                 } else {
-                    // Si NO quiere ser recordado, primero cerramos sesión en Google y Firebase,
-                    // y LUEGO navegamos.
                     googleSignInClient.signOut().addOnCompleteListener {
-                        auth.signOut() // También cerramos la sesión de Firebase
+                        auth.signOut()
                         irAMainActivity()
                     }
                 }
-                // --- FIN DE LA SOLUCIÓN ---
             } else {
                 Toast.makeText(this, "Error de autenticación: ${task.exception?.message}", Toast.LENGTH_LONG).show()
             }
