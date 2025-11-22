@@ -7,11 +7,11 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.appmovilesproy.databinding.ActivityMainBinding
+import com.example.appmovilesproy.ui.wishlist.WishlistFragment
 import com.example.prueba.ui.home.HomeFragment
 import com.example.prueba.ui.profile.ProfileFragment
 import com.example.prueba.ui.publications.PublicationsFragment
 import com.example.prueba.ui.publish.PublishFragment
-import com.example.prueba.ui.wishlist.WishlistFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {

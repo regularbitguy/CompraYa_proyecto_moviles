@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appmovilesproy.R
-import com.example.appmovilesproy.model.Producto
+import com.example.appmovilesproy.Producto
 import com.example.appmovilesproy.ui.producto.ProductFragment
 
 class ProductoAdapter(
@@ -46,6 +46,7 @@ class ProductoAdapter(
         holder.itemView.setOnClickListener {
 
             val fragment = ProductFragment.newInstance(
+                productoId = producto.id, // <-- CAMBIO IMPORTANTE
                 titulo = producto.titulo ?: "",
                 descripcion = producto.descripcion ?: "",
                 precio = producto.precio ?: 0.0,

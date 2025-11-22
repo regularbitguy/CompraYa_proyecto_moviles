@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.appmovilesproy.databinding.FragmentPublicationsBinding
-import com.example.appmovilesproy.model.Producto
+import com.example.appmovilesproy.Producto
 import com.example.appmovilesproy.adapter.ProductoAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

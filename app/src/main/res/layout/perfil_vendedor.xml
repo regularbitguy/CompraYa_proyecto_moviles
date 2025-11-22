@@ -25,8 +25,8 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/back"
             android:background="@drawable/circulo"
             android:scaleType="centerInside"
@@ -121,7 +121,7 @@
                 <Button
                     android:id="@+id/btnReportar"
                     android:layout_width="110dp"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="#1E5631"
                     android:fontFamily="@font/plus_jakarta_sans"
@@ -143,7 +143,7 @@
             <EditText
                 android:id="@+id/txtNombreCompleto"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:hint="Juan Pérez"
                 android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:background="@drawable/caja_texto"
@@ -163,7 +163,7 @@
             <EditText
                 android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:hint="juanperez@gmail.com"
                 android:background="@drawable/caja_texto"
                 android:enabled="false"
@@ -184,7 +184,7 @@
             <EditText
                 android:id="@+id/txtContacto"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:hint="+51 987 654 321"
                 android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:background="@drawable/caja_texto"
