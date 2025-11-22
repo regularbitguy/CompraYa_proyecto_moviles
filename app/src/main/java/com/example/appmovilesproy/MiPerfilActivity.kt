@@ -7,8 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.appmovilesproy.AyudaActivity
-import com.example.myproductos.InfoPersonalActivity
+
 
 class MiPerfilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +21,5 @@ class MiPerfilActivity : AppCompatActivity() {
         }
     }
 
-    private fun asignarReferencias(){
-        val btnInfoPersonal = findViewById<LinearLayout>(R.id.btnInfoPersonal)
-        val btnAyuda = findViewById<LinearLayout>(R.id.btnAyuda)
 
-        btnInfoPersonal.setOnClickListener {
-            val intent = Intent(this, InfoPersonalActivity::class.java)
-            startActivity(intent)
-        }
-        btnAyuda.setOnClickListener {
-            val intent = Intent(this, AyudaActivity::class.java)
-            startActivity(intent)
-        }
-    }
 }

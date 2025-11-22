@@ -1,4 +1,4 @@
-package com.example.myproductos
+package com.example.appmovilesproy
 
 import android.os.Bundle
 import android.widget.Button
