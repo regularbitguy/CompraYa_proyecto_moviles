@@ -25,8 +25,8 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/back"
             android:background="@drawable/circulo"
             android:scaleType="centerInside"
@@ -127,7 +127,7 @@
             <EditText
                 android:id="@+id/txtRazon"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/caja_texto"
                 android:enabled="false"

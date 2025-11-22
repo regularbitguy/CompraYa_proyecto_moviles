@@ -10,9 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.FragmentHomeBinding
-import com.example.appmovilesproy.ProductoActivity
 import com.example.appmovilesproy.adapter.ProductoAdapter
-import com.example.appmovilesproy.model.Producto
+import com.example.appmovilesproy.Producto
 import com.example.prueba.Buscar
 import com.example.prueba.CategoriasActivity
 import com.example.prueba.ui.chats.ChatsFragment

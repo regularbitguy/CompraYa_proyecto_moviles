@@ -7,7 +7,6 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appmovilesproy.model.Producto
 
 class PerfilVendedorActivity : AppCompatActivity() {
 
@@ -41,9 +40,11 @@ class PerfilVendedorActivity : AppCompatActivity() {
         btnReportar = findViewById(R.id.btnReportar)
 
         btnBack.setOnClickListener {
-            val intent = Intent(this, Producto::class.java)
-            startActivity(intent)
+            onBackPressedDispatcher.onBackPressed()
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         }
+
+
 
         btnReportar.setOnClickListener {
             val intent = Intent(this, ReportarActivity::class.java)
