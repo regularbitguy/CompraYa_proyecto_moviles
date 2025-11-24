@@ -10,7 +10,6 @@ import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.FragmentChatsBinding
 
 class ChatsFragment : Fragment() {
-
     private var _binding: FragmentChatsBinding? = null
     private val binding get() = _binding!!
 

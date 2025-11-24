@@ -9,8 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class SugerenciaAdapter(private val lista: List<Sugerencia>) :
-    RecyclerView.Adapter<SugerenciaAdapter.ViewHolder>() {
+class SugerenciaAdapter(private val lista: List<Sugerencia>) : RecyclerView.Adapter<SugerenciaAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val img = view.findViewById<ImageView>(R.id.imgSugerencia)

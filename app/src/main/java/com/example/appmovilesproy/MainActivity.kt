@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
-
     private lateinit var navIcons: List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -17,7 +17,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class RegistrarActivity : AppCompatActivity() {
 
-    // Se recomienda usar View Binding para evitar findViewById repetitivos
     private lateinit var binding: ActivityRegistrarBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -92,19 +91,19 @@ class RegistrarActivity : AppCompatActivity() {
             return
         }
 
-        auth.createUserWithEmailAndPassword(correo, contrasena)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Envío de correo de verificación (buena práctica)
-                    task.result.user?.sendEmailVerification()
-                    Toast.makeText(this, "Registro exitoso. Revisa tu correo para verificar la cuenta.", Toast.LENGTH_LONG).show()
-                    // Redirigir a una pantalla que confirme el registro
-                    startActivity(Intent(this, RegistroExitosoActivity::class.java))
-                    finish()
-                } else {
-                    Toast.makeText(this, "Error en el registro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                }
+        auth.createUserWithEmailAndPassword(correo, contrasena).addOnCompleteListener(this) {
+            task ->
+            if (task.isSuccessful) {
+                // Envío de correo de verificación (buena práctica)
+                task.result.user?.sendEmailVerification()
+                Toast.makeText(this, "Registro exitoso. Revisa tu correo para verificar la cuenta.", Toast.LENGTH_LONG).show()
+                // Redirigir a una pantalla que confirme el registro
+                startActivity(Intent(this, RegistroExitosoActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this, "Error en el registro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
+        }
     }
 
     private fun iniciarRegistroConGoogle() {
@@ -119,18 +118,18 @@ class RegistrarActivity : AppCompatActivity() {
         }
 
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // ¡Punto clave! Guardar la preferencia para futuras sesiones
-                    guardarPreferenciaRecordarme(true)
+        auth.signInWithCredential(credential).addOnCompleteListener(this) {
+            task ->
+            if (task.isSuccessful) {
+                // ¡Punto clave! Guardar la preferencia para futuras sesiones
+                guardarPreferenciaRecordarme(true)
 
-                    Toast.makeText(this, "Bienvenido, ${auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
-                    irAMainActivity()
-                } else {
-                    Toast.makeText(this, "Error de autenticación con Firebase: ${task.exception?.message}", Toast.LENGTH_LONG).show()
-                }
+                Toast.makeText(this, "Bienvenido, ${auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
+                irAMainActivity()
+            } else {
+                Toast.makeText(this, "Error de autenticación con Firebase: ${task.exception?.message}", Toast.LENGTH_LONG).show()
             }
+        }
     }
 
     private fun guardarPreferenciaRecordarme(recordar: Boolean) {

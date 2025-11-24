@@ -182,16 +182,16 @@
                 </LinearLayout>
 
                 <!-- Botón contactar al lado -->
-                <Button
-                    android:id="@+id/btnContactar"
-                    android:layout_width="130dp"
+                <ImageButton
+                    android:id="@+id/btnAddToWishlist"
+                    android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:text="Contactar"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:fontFamily="@font/plus_jakarta_sans_medium"
-                    android:backgroundTint="#074222"
-                    android:textColor="#FFF"/>
+                    android:src="@drawable/ic_favorite_border"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Añadir a favoritos"
+                    app:layout_constraintTop_toTopOf="@id/txtNombreProducto"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" />
             </LinearLayout>
 
 
@@ -216,16 +216,16 @@
                 android:textColor="#555"/>
 
             <!-- 🔥 NUEVO BOTÓN -->
-            <ImageButton
-                android:id="@+id/btnAddToWishlist"
-                android:layout_width="48dp"
+            <Button
+                android:id="@+id/btnContactar"
+                android:layout_marginTop="18dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_favorite_border"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Añadir a favoritos"
-                app:layout_constraintTop_toTopOf="@id/txtNombreProducto"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp" />
+                android:text="Contactar con proveedor"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:textAllCaps="false"
+                android:backgroundTint="#074222"
+                android:textColor="#FFF"/>
 
             <!-- Sugerencias -->
             <TextView

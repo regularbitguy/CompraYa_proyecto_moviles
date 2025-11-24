@@ -10,8 +10,7 @@ import com.example.appmovilesproy.R
 
 class Chat(val nombre: String, val ultimoMensaje: String, val hora: String, val imagenResId: Int)
 
-class ChatsAdapter(private val listaChats: List<Chat>) :
-    RecyclerView.Adapter<ChatsAdapter.ChatViewHolder>() {
+class ChatsAdapter(private val listaChats: List<Chat>) : RecyclerView.Adapter<ChatsAdapter.ChatViewHolder>() {
 
     class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgUsuario: ImageView = view.findViewById(R.id.imgUsuario)
