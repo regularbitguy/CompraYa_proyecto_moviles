@@ -223,7 +223,6 @@
                 android:layout_height="230dp"/>
         </LinearLayout>
     </ScrollView>
-
     <include
         android:id="@+id/bottomBar"
         layout="@layout/bottom_bar"

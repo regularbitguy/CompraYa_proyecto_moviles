@@ -4,28 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/white">
 
-    <TextView
-        android:id="@+id/tvTitleWishlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mi Lista de Deseados"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <!-- 1. LE AÑADIMOS UN ID AL HEADER -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/btnRetroceder2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/img_retroceder2"
+            android:contentDescription="Retroceder" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+            android:text="Lista de deseados"
+            android:textColor="#114232"
+            android:textSize="22sp"
+            android:paddingStart="25dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWishlist"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitleWishlist"
-        tools:listitem="@layout/item_producto_reciente" />
+        tools:listitem="@layout/item_publicacion" />
 
     <TextView
         android:id="@+id/tvEmptyWishlist"

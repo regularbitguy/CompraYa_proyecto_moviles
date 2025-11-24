@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMovilesProy">
         <activity
-            android:name="com.example.appmovilesproy.MiPerfilActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -29,9 +26,6 @@
             android:name=".RecuperarContrasenaActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.appmovilesproy.InfoPersonalActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
@@ -42,12 +36,6 @@
             android:exported="false" />
         <activity
             android:name=".RegistrarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ReportarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PerfilVendedorActivity"
             android:exported="false" />
         <activity
             android:name=".ProductoActivity"

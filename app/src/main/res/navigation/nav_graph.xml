@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/principalFragment">
 
@@ -29,4 +30,24 @@
         android:id="@+id/categoriasFragment"
         android:name="com.example.prueba.ui.categories.CategoriesFragment"
         android:label="Categorias" />
+    <!-- 1. CORRECCIÓN: El Perfil Vendedor debe apuntar a la clase PerfilVendedorFragment -->
+    <fragment
+        android:id="@+id/perfilVendedorFragment"
+        android:name="com.example.appmovilesproy.PerfilVendedorFragment"
+        android:label="Perfil del Vendedor"
+        tools:layout="@layout/fragment_perfil_vendedor" />
+
+    <!-- 2. AGREGADO NECESARIO: Debes registrar también el Fragmento de Producto -->
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.appmovilesproy.ui.producto.ProductFragment"
+        android:label="Detalle Producto"
+        tools:layout="@layout/fragment_producto" />
+
+    <fragment
+        android:id="@+id/reportarFragment"
+        android:name="com.example.appmovilesproy.ReportarFragment"
+        android:label="Reportar Usuario"
+        tools:layout="@layout/fragment_reportar" />
+
 </navigation>

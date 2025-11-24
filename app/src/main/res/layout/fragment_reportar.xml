@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F8F8"
-    tools:context=".ReportarActivity">
+    tools:context=".ReportarFragment">
 
     <!-- 🔹 BARRA SUPERIOR -->
     <LinearLayout
@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reportar Usuario"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
             android:textColor="#1E5631"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -48,7 +49,6 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/topBar"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -121,6 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Razón:"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -132,6 +133,8 @@
                 android:background="@drawable/caja_texto"
                 android:enabled="false"
                 android:hint="Razon del reporte"
+                android:fontFamily="@font/plus_jakarta_sans"
+                android:textColor="@color/black"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
                 android:textSize="13sp" />
@@ -140,6 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Descripción:"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -151,6 +155,9 @@
                 android:background="@drawable/caja_texto"
                 android:enabled="false"
                 android:hint="Max 50 palabras"
+                android:fontFamily="@font/plus_jakarta_sans"
+                android:textColor="@color/black"
+
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
                 android:textSize="13sp" />
@@ -162,19 +169,10 @@
                 android:layout_marginStart="8dp"
                 android:backgroundTint="#1E5631"
                 android:text="Enviar Reporte"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:textAllCaps="false"
                 android:textColor="#FFF"
                 android:textSize="13sp" />
         </LinearLayout>
     </ScrollView>
-
-    <!-- 🔹 BARRA INFERIOR -->
-    <include
-        android:id="@+id/bottomBar"
-        layout="@layout/bottom_bar"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

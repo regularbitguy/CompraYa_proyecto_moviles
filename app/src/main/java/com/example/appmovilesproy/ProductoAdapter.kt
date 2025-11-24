@@ -13,10 +13,7 @@ import com.example.appmovilesproy.R
 import com.example.appmovilesproy.Producto
 import com.example.appmovilesproy.ui.producto.ProductFragment
 
-class ProductoAdapter(
-    private val context: Context,
-    private val listaProductos: List<Producto>
-) : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>() {
+class ProductoAdapter(private val context: Context, private val listaProductos: List<Producto>) : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>() {
 
     class ProductoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagen: ImageView = itemView.findViewById(R.id.imgProducto)
@@ -40,13 +37,13 @@ class ProductoAdapter(
 
         Glide.with(context)
             .load(producto.imagenUrl)
-            .placeholder(R.drawable.img_teclado)
+            .placeholder(R.drawable.img)
             .into(holder.imagen)
 
         holder.itemView.setOnClickListener {
 
             val fragment = ProductFragment.newInstance(
-                productoId = producto.id, // <-- CAMBIO IMPORTANTE
+                productoId = producto.id,
                 titulo = producto.titulo ?: "",
                 descripcion = producto.descripcion ?: "",
                 precio = producto.precio ?: 0.0,

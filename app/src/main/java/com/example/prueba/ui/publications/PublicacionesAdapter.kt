@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.Producto
 
-class PublicacionAdapter(private val lista: List<Producto>) : RecyclerView.Adapter<PublicacionAdapter.ViewHolder>() {
+class PublicacionAdapter(private val lista: List<Producto>, private val onEditClick: (Producto) -> Unit, private val onDeleteClick: (Producto) -> Unit) : RecyclerView.Adapter<PublicacionAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgProducto: ImageView = itemView.findViewById(R.id.imgProducto)

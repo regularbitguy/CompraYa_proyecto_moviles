@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mis productos"
-            android:textSize="11sp"
+            android:textSize="9sp"
             android:textColor="#666" />
     </LinearLayout>
 

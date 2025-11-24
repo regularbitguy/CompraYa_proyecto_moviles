@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mi perfil"
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
             android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="25sp" />
@@ -70,6 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Piero Villanueva"
+                    android:fontFamily="@font/plus_jakarta_sans_semibold"
                     android:textSize="18sp"
                     android:textColor="#111"
                     android:textStyle="bold" />
@@ -105,6 +107,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:text="Información personal"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textSize="15sp"
                         android:textColor="#111" />
 
@@ -146,6 +149,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:text="Favoritos"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textSize="15sp"
                         android:textColor="#111" />
 
@@ -177,6 +181,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:text="Notificaciones"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textSize="15sp"
                         android:textColor="#111" />
 
@@ -221,6 +226,7 @@
                         android:layout_marginStart="10dp"
                         android:text="Ayuda"
                         android:textSize="15sp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textColor="#111" />
 
                     <ImageView
@@ -252,6 +258,7 @@
                         android:layout_marginStart="10dp"
                         android:text="Reviews de usuario"
                         android:textSize="15sp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textColor="#111" />
 
                     <ImageView
@@ -283,6 +290,7 @@
                         android:layout_marginStart="10dp"
                         android:text="Configuración"
                         android:textSize="15sp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
                         android:textColor="#111" />
 
                     <ImageView
@@ -301,6 +309,7 @@
                 android:layout_marginTop="25dp"
                 android:backgroundTint="#1E5631"
                 android:text="Cerrar sesión"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
                 android:textAllCaps="false"
                 android:textColor="#FFF"
                 android:textSize="15sp" />

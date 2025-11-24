@@ -33,10 +33,13 @@ class PublishFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentPublishBinding.inflate(inflater, container, false)
+
+        // Inicializar Firebase
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
+        // Configurar botones
         binding.imgProducto.setOnClickListener { openGallery() }
         binding.btnPublicar.setOnClickListener { publicarProducto() }
 
@@ -52,6 +55,7 @@ class PublishFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             imageUri = data?.data
+            // Mostrar la imagen seleccionada
             Glide.with(this).load(imageUri).into(binding.imgProducto)
         }
     }
@@ -65,12 +69,16 @@ class PublishFragment : Fragment() {
             return
         }
 
-        val precio = precioTexto.toDoubleOrNull() ?: 0.0
+        val precio = precioTexto.toDoubleOrNull()
+        if (precio == null || precio <= 0) {
+            binding.etPrecio.error = "Ingresa un precio válido"
+            return
+        }
         val categoria = binding.etCategoria.text.toString().trim()
         val estado = binding.etEstado.text.toString().trim()
         val descripcion = binding.etDescripcion.text.toString().trim()
 
-        if (titulo.isEmpty() || precio == null || categoria.isEmpty() ||
+        if (titulo.isEmpty() || precio == 0.0 || categoria.isEmpty() ||
             estado.isEmpty() || descripcion.isEmpty() || imageUri == null) {
             Toast.makeText(requireContext(), "Por favor completa todos los campos e incluye una imagen", Toast.LENGTH_SHORT).show()
             return
@@ -82,12 +90,16 @@ class PublishFragment : Fragment() {
         progressDialog.show()
 
         val userId = auth.currentUser?.uid ?: return
+        // Crear referencia única para la imagen
         val imageRef = storage.reference.child("productos/${UUID.randomUUID()}.jpg")
 
         imageUri?.let { uri ->
+            // 1. Subir imagen a Storage
             imageRef.putFile(uri).addOnSuccessListener {
+                // 2. Obtener URL de descarga
                 imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
 
+                    // 3. Crear objeto mapa para Firestore
                     val producto = hashMapOf(
                         "titulo" to titulo,
                         "precio" to precio,
@@ -99,6 +111,7 @@ class PublishFragment : Fragment() {
                         "timestamp" to System.currentTimeMillis()
                     )
 
+                    // 4. Guardar datos en Firestore
                     db.collection("productos").add(producto).addOnSuccessListener {
                         progressDialog.dismiss()
                         Toast.makeText(requireContext(), "Producto publicado con éxito", Toast.LENGTH_SHORT).show()
@@ -106,7 +119,7 @@ class PublishFragment : Fragment() {
                     }
                         .addOnFailureListener { e ->
                             progressDialog.dismiss()
-                            Toast.makeText(requireContext(), "Error al guardar: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT).show()
                         }
                 }
             }.addOnFailureListener {
@@ -122,7 +135,7 @@ class PublishFragment : Fragment() {
         binding.etCategoria.setText("")
         binding.etEstado.setText("")
         binding.etDescripcion.setText("")
-        binding.imgProducto.setImageResource(R.drawable.img_agregarfoto)
+        binding.imgProducto.setImageResource(R.drawable.img_agregarfoto) // Asegúrate de tener este drawable o usa uno por defecto
         imageUri = null
     }
 }

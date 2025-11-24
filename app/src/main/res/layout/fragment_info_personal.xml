@@ -7,8 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F8F8"
-    tools:context=".InfoPersonalActivity">
+    tools:context=".InfoPersonalFragment">
 
+    <!-- 🔹 BARRA SUPERIOR -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -46,8 +47,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:overScrollMode="never"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/topBar"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -108,6 +111,8 @@
                     android:layout_height="48dp"
                     android:background="@drawable/contend_perfil"
                     android:hint="Ingrese su nombre completo"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:fontFamily="@font/plus_jakarta_sans"
                     android:paddingHorizontal="10dp"
                     android:textColorHint="#999"/>
@@ -130,7 +135,9 @@
                     android:layout_height="48dp"
                     android:background="@drawable/contend_perfil"
                     android:hint="Ingrese su correo"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/plus_jakarta_sans"
+                    android:textSize="15sp"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="10dp"
                     android:textColorHint="#999"/>
@@ -153,7 +160,10 @@
                     android:background="@drawable/contend_perfil"
                     android:hint="Ingrese su DNI"
                     android:fontFamily="@font/plus_jakarta_sans"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
                     android:inputType="number"
+                    android:maxLength="8"
                     android:paddingHorizontal="10dp"
                     android:textColorHint="#999"/>
             </LinearLayout>
@@ -183,6 +193,8 @@
                     android:background="@drawable/contend_perfil"
                     android:hint="Contraseña actual"
                     android:fontFamily="@font/plus_jakarta_sans"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
                     android:inputType="textPassword"
                     android:paddingHorizontal="10dp"
                     android:textColorHint="#999"/>
@@ -194,6 +206,8 @@
                     android:background="@drawable/contend_perfil"
                     android:hint="Nueva contraseña"
                     android:fontFamily="@font/plus_jakarta_sans"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
                     android:inputType="textPassword"
                     android:paddingHorizontal="10dp"
                     android:textColorHint="#999"
@@ -206,6 +220,8 @@
                     android:background="@drawable/contend_perfil"
                     android:hint="Confirmar nueva contraseña"
                     android:fontFamily="@font/plus_jakarta_sans"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
                     android:inputType="textPassword"
                     android:paddingHorizontal="10dp"
                     android:textColorHint="#999"
@@ -225,14 +241,5 @@
                 android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
-
-    <include
-        android:id="@+id/bottomBar"
-        layout="@layout/bottom_bar"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

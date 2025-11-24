@@ -25,7 +25,7 @@ class ProductoActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(imagenUrl)
-            .placeholder(R.drawable.img_teclado)
+            .placeholder(R.drawable.img)
             .into(binding.imgProd)
     }
 }
