@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.appmovilesproy.Producto
+import com.example.appmovilesproy.R
 import com.example.appmovilesproy.adapter.ProductoAdapter
 import com.example.appmovilesproy.databinding.FragmentWishlistBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -39,14 +40,38 @@ class WishlistFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        // Usamos el mismo adapter que ya tienes
-        productoAdapter = ProductoAdapter(requireContext(), wishlistProducts)
+        productoAdapter = ProductoAdapter(requireContext(), wishlistProducts) { productoSeleccionado ->
+
+            val fragment = com.example.appmovilesproy.ui.producto.ProductFragment()
+            val args = Bundle()
+            args.putString("productoId", productoSeleccionado.id)
+            args.putString("titulo", productoSeleccionado.titulo)
+            args.putString("descripcion", productoSeleccionado.descripcion)
+            args.putDouble("precio", productoSeleccionado.precio ?: 0.0)
+            args.putString("imagenUrl", productoSeleccionado.imagenUrl)
+
+
+            val idVendedor = if (!productoSeleccionado.vendedorId.isNullOrEmpty()) {
+                productoSeleccionado.vendedorId
+            } else {
+                productoSeleccionado.usuarioId ?: ""
+            }
+
+            args.putString("vendedorId", idVendedor)
+
+            fragment.arguments = args
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
         binding.rvWishlist.apply {
-            // Puedes usar GridLayoutManager para una vista de cuadrícula
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = productoAdapter
         }
     }
+
 
     private fun loadWishlist() {
         binding.progressBarWishlist.isVisible = true

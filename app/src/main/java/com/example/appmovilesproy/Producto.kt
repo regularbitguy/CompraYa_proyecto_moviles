@@ -10,5 +10,5 @@ data class Producto(
     val imagenUrl: String? = "",
     val usuarioId: String? = "",
     val timestamp: Long? = null,
-    val vendedorId: String = ""
+    var vendedorId: String? = ""
 )

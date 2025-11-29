@@ -23,7 +23,6 @@ class PublicationsFragment : Fragment() {
 
     private val listaProductos = mutableListOf<Producto>()
 
-    // CAMBIO 1: Usamos PublicacionAdapter, no ProductoAdapter
     private lateinit var adapter: PublicacionAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -45,8 +44,6 @@ class PublicationsFragment : Fragment() {
         cargarMisPublicaciones()
 
         binding.btnRetroceder2.setOnClickListener {
-            // Si estás usando navegación manual en MainActivity, esto puede que no funcione como esperas.
-            // Lo ideal sería: parentFragmentManager.popBackStack()
             parentFragmentManager.popBackStack()
         }
         return binding.root

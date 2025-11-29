@@ -1,6 +1,8 @@
 package com.example.appmovilesproy.ui.producto
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,7 @@ import com.example.appmovilesproy.R
 import com.example.appmovilesproy.adapter.ProductoAdapter
 import com.example.appmovilesproy.databinding.FragmentProductoBinding
 import com.example.appmovilesproy.Producto
-import com.example.prueba.ui.chats.ChatsFragment
+import com.example.prueba.ui.chats.ChatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -21,16 +23,21 @@ class ProductFragment : Fragment() {
 
     private var _binding: FragmentProductoBinding? = null
     private val binding get() = _binding!!
+
     private val db = FirebaseFirestore.getInstance()
     private val currentUser = FirebaseAuth.getInstance().currentUser
+
     private val listaProductos = mutableListOf<Producto>()
     private lateinit var adapter: ProductoAdapter
+
     private var titulo: String? = null
     private var descripcion: String? = null
     private var precio: Double? = null
     private var imagenUrl: String? = null
-    private var isFavorite = false
     private var productoId: String? = null
+    private var vendedorId: String? = null
+
+    private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,77 +46,131 @@ class ProductFragment : Fragment() {
             productoId = it.getString("productoId")
             titulo = it.getString("titulo")
             descripcion = it.getString("descripcion")
-            precio = it.getDouble("precio")
+            precio = it.getDouble("precio", 0.0)
             imagenUrl = it.getString("imagenUrl")
+            vendedorId = it.getString("vendedorId")
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProductoBinding.inflate(inflater, container, false)
 
-        // Mostrar datos del producto seleccionado
+        // Mostrar datos del producto
         binding.txtNombreProducto.text = titulo
         binding.txtDescripcion.text = descripcion
         binding.txtPrecio.text = "S/. $precio"
 
-        Glide.with(requireContext()).load(imagenUrl).into(binding.imgProd)
+        if (!imagenUrl.isNullOrEmpty()) {
+            Glide.with(requireContext()).load(imagenUrl).into(binding.imgProd)
+        }
 
-        // Configurar RecyclerView de sugerencias
-        adapter = ProductoAdapter(requireContext(), listaProductos)
+        // Adaptador de sugerencias
+        adapter = ProductoAdapter(requireContext(), listaProductos) { productoSeleccionado ->
+            val vendedor = productoSeleccionado.vendedorId ?: productoSeleccionado.usuarioId ?: ""
+
+            val fragment = ProductFragment.newInstance(
+                productoId = productoSeleccionado.id,
+                titulo = productoSeleccionado.titulo ?: "",
+                descripcion = productoSeleccionado.descripcion ?: "",
+                precio = productoSeleccionado.precio ?: 0.0,
+                imagenUrl = productoSeleccionado.imagenUrl ?: "",
+                vendedorId = vendedor
+            )
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         binding.rvProductosRecientes.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvProductosRecientes.adapter = adapter
 
+        // Acciones
+        setupBotones()
+
         cargarProductosSugeridos()
         checkIfFavorite()
-        referenciar()
 
         return binding.root
     }
-    private fun referenciar(){
-        // Botón atrás
-        binding.btnBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
-        binding.layoutPerfilVendedor.setOnClickListener {
-            val fragment = PerfilVendedorFragment()
 
+    private fun setupBotones() {
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.layoutPerfilVendedor.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment) // 'fragment_container' es el ID en tu MainActivity
+                .replace(R.id.fragment_container, PerfilVendedorFragment())
                 .addToBackStack(null)
                 .commit()
         }
-        binding.btnMessage.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ChatsFragment())
-                .addToBackStack(null)
-                .commit()
+
+        binding.btnMessage.setOnClickListener { binding.btnContactar.performClick() }
+
+        binding.btnContactar.setOnClickListener {
+            Log.d("CHAT_TEST", "vendedorId recibido en Fragment = '$vendedorId'")
+
+            if (vendedorId.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Error: No se identificó al vendedor", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            iniciarChatConVendedor(vendedorId!!)
         }
-        // ⭐ Listener para el botón de wishlist
-        binding.btnAddToWishlist.setOnClickListener {
-            toggleWishlistStatus()
+
+        binding.btnAddToWishlist.setOnClickListener { toggleWishlistStatus() }
+    }
+
+    private fun iniciarChatConVendedor(vendedorId: String) {
+        val miUid = currentUser?.uid ?: return
+
+        val chatId = if (miUid < vendedorId) "${miUid}_${vendedorId}" else "${vendedorId}_${miUid}"
+
+        val chatRef = db.collection("chats").document(chatId)
+
+        chatRef.get().addOnSuccessListener { doc ->
+            if (!doc.exists()) {
+                // Crear chat nuevo
+                val chatData = hashMapOf(
+                    "usuarios" to listOf(miUid, vendedorId),
+                    "ultimoMensaje" to "",
+                    "timestamp" to System.currentTimeMillis()
+                )
+                chatRef.set(chatData)
+            }
+
+            abrirChatActivity(chatId, vendedorId)
         }
     }
-    private fun toggleWishlistStatus() {
-        if (currentUser == null || productoId == null) {
-            Toast.makeText(requireContext(), "Error: Usuario no autenticado o producto inválido.", Toast.LENGTH_SHORT).show()
-            return
-        }
 
-        val wishlistRef = db.collection("usuarios").document(currentUser.uid).collection("wishlist").document(productoId!!)
+    private fun abrirChatActivity(chatId: String, vendedorId: String) {
+        val intent = Intent(requireContext(), ChatActivity::class.java)
+        intent.putExtra("chatId", chatId)
+        intent.putExtra("vendedorId", vendedorId)
+        Log.d("CHAT_TEST", "🔹 Abriendo chat: chatId=$chatId vendedorId=$vendedorId")
+        startActivity(intent)
+    }
+
+    private fun toggleWishlistStatus() {
+        if (currentUser == null || productoId == null) return
+
+        val wishlistRef = db.collection("usuarios")
+            .document(currentUser.uid)
+            .collection("wishlist")
+            .document(productoId!!)
 
         if (isFavorite) {
             wishlistRef.delete().addOnSuccessListener {
                 isFavorite = false
                 updateFavoriteIcon()
-                Toast.makeText(requireContext(), "Eliminado de tu wishlist", Toast.LENGTH_SHORT).show()
             }
         } else {
-            val wishlistItem = hashMapOf(
-                "productoId" to productoId,
-            )
-            wishlistRef.set(wishlistItem).addOnSuccessListener {
+            wishlistRef.set(mapOf("productoId" to productoId)).addOnSuccessListener {
                 isFavorite = true
                 updateFavoriteIcon()
-                Toast.makeText(requireContext(), "¡Añadido a tu wishlist!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -117,11 +178,15 @@ class ProductFragment : Fragment() {
     private fun checkIfFavorite() {
         if (currentUser == null || productoId == null) return
 
-        db.collection("usuarios").document(currentUser.uid).collection("wishlist").document(productoId!!).get().addOnSuccessListener {
-            document ->
-            isFavorite = document.exists()
-            updateFavoriteIcon()
-        }
+        db.collection("usuarios")
+            .document(currentUser.uid)
+            .collection("wishlist")
+            .document(productoId!!)
+            .get()
+            .addOnSuccessListener { doc ->
+                isFavorite = doc.exists()
+                updateFavoriteIcon()
+            }
     }
 
     private fun updateFavoriteIcon() {
@@ -131,6 +196,7 @@ class ProductFragment : Fragment() {
             binding.btnAddToWishlist.setImageResource(R.drawable.ic_favorite_border)
         }
     }
+
     private fun cargarProductosSugeridos() {
         db.collection("productos").limit(10).get().addOnSuccessListener { result ->
             listaProductos.clear()
@@ -146,8 +212,16 @@ class ProductFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
     companion object {
-        fun newInstance(productoId: String,titulo: String, descripcion: String, precio: Double, imagenUrl: String): ProductFragment {
+        fun newInstance(
+            productoId: String,
+            titulo: String,
+            descripcion: String,
+            precio: Double,
+            imagenUrl: String,
+            vendedorId: String?
+        ): ProductFragment {
             val fragment = ProductFragment()
             val args = Bundle()
             args.putString("productoId", productoId)
@@ -155,6 +229,7 @@ class ProductFragment : Fragment() {
             args.putString("descripcion", descripcion)
             args.putDouble("precio", precio)
             args.putString("imagenUrl", imagenUrl)
+            args.putString("vendedorId", vendedorId)
             fragment.arguments = args
             return fragment
         }

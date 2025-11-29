@@ -10,7 +10,7 @@ import com.example.appmovilesproy.CategoriaAdapter
 import com.example.appmovilesproy.MainActivity
 import com.example.appmovilesproy.R
 import com.example.appmovilesproy.databinding.ActivityCategoriasBinding
-import com.example.prueba.ui.chats.ChatsFragment
+import com.example.prueba.ui.chats.ChatFragment
 
 class CategoriasActivity : AppCompatActivity() {
 
@@ -47,7 +47,7 @@ class CategoriasActivity : AppCompatActivity() {
         // Acciones de los botones superiores
         binding.btnChatCategoria.setOnClickListener {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.btnChatCategoria, ChatsFragment())
+                .replace(R.id.btnChatCategoria, ChatFragment())
                 .addToBackStack(null)
                 .commit()
         }

@@ -14,22 +14,52 @@ import com.example.appmovilesproy.adapter.ProductoAdapter
 import com.example.appmovilesproy.Producto
 import com.example.prueba.Buscar
 import com.example.prueba.CategoriasActivity
-import com.example.prueba.ui.chats.ChatsFragment
+import com.example.prueba.ui.chats.ChatFragment
 import com.google.firebase.firestore.FirebaseFirestore
+import com.example.appmovilesproy.ui.producto.ProductFragment
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
-
     private val listaProductos = mutableListOf<Producto>()
     private lateinit var adapter: ProductoAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        adapter = ProductoAdapter(requireContext(), listaProductos)
+        // En HomeFragment.kt
+
+        adapter = ProductoAdapter(requireContext(), listaProductos) { productoSeleccionado ->
+
+            // 1. Crear el fragmento
+            val fragment = com.example.appmovilesproy.ui.producto.ProductFragment()
+
+            // 2. Preparar los datos
+            val args = Bundle()
+            args.putString("productoId", productoSeleccionado.id)
+            args.putString("titulo", productoSeleccionado.titulo)
+            args.putString("descripcion", productoSeleccionado.descripcion)
+            args.putDouble("precio", productoSeleccionado.precio ?: 0.0)
+            args.putString("imagenUrl", productoSeleccionado.imagenUrl)
+
+            val idVendedor = if (!productoSeleccionado.vendedorId.isNullOrEmpty()) {
+                productoSeleccionado.vendedorId
+            } else {
+                productoSeleccionado.usuarioId ?: ""
+            }
+
+            args.putString("vendedorId", idVendedor)
+
+            fragment.arguments = args
+
+            // 3. Navegar
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
         binding.rvProductosRecientes.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvProductosRecientes.adapter = adapter
@@ -42,7 +72,7 @@ class HomeFragment : Fragment() {
 
         binding.btnChats.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ChatsFragment())
+                .replace(R.id.fragment_container, ChatFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -56,7 +86,7 @@ class HomeFragment : Fragment() {
 
     private fun cargarProductos() {
         db.collection("productos").orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING).get().addOnSuccessListener {
-            result ->
+                result ->
             listaProductos.clear()
             for (doc in result) {
                 val producto = doc.toObject(Producto::class.java)

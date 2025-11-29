@@ -63,6 +63,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="10dp"
+        android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/chatHeader"
         app:layout_constraintBottom_toTopOf="@+id/enviarLayout"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +77,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:orientation="horizontal"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -85,6 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:background="@drawable/caja_texto"
+            android:textColor="@color/black"
             android:hint="Escribe un mensaje..."
             android:paddingHorizontal="12dp"
             android:layout_weight="1"/>
